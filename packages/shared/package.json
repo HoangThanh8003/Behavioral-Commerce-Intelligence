@@ -1,0 +1,7 @@
+{
+  "name": "@nexusai/shared",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "description": "Core shared utilities for NexusAI"
+}

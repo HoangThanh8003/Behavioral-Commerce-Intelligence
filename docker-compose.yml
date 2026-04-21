@@ -10,6 +10,8 @@ services:
       POSTGRES_DB: nexus_ai
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nexus-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U nexus -d nexus_ai"]
       interval: 10s
@@ -23,6 +25,8 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+    networks:
+      - nexus-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -40,11 +44,17 @@ services:
       RABBITMQ_DEFAULT_PASS: nexus_dev_password
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - nexus-network
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "check_running"]
       interval: 10s
       timeout: 5s
       retries: 5
+
+networks:
+  nexus-network:
+    driver: bridge
 
 volumes:
   postgres_data:

@@ -1,0 +1,10 @@
+{
+  "name": "@nexusai/config",
+  "version": "0.1.0",
+  "private": true,
+  "main": "tailwind.config.js",
+  "files": [
+    "tsconfig.base.json",
+    "tailwind.config.js"
+  ]
+}

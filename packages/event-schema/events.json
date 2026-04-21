@@ -1,0 +1,21 @@
+{
+  "events": [
+    {
+      "name": "CLICK",
+      "properties": {
+        "elementId": "string",
+        "pageUrl": "string",
+        "timestamp": "string"
+      }
+    },
+    {
+      "name": "PURCHASE",
+      "properties": {
+        "productId": "string",
+        "amount": "number",
+        "currency": "string",
+        "timestamp": "string"
+      }
+    }
+  ]
+}
