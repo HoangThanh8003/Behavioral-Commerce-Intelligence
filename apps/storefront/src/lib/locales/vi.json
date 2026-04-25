@@ -1,0 +1,133 @@
+{
+  "nav": {
+    "shop": "Cửa Hàng",
+    "categories": "Danh Mục",
+    "journal": "Tạp Chí",
+    "about": "Giới Thiệu",
+    "signIn": "Đăng Nhập"
+  },
+  "hero": {
+    "badge": "Tầng Trí Tuệ Đang Hoạt Động",
+    "title1": "Tương Lai",
+    "title2": "của",
+    "title3": "Thương Mại",
+    "title4": "là Cá Nhân Hóa.",
+    "subtitle": "NexusAI đọc tín hiệu hành vi thời gian thực để tạo ra trải nghiệm mua sắm độc đáo — riêng biệt cho từng khách hàng, từng phiên truy cập.",
+    "cta": "Khám Phá Bộ Sưu Tập",
+    "watchStory": "Xem Câu Chuyện"
+  },
+  "stats": {
+    "conversionLabel": "Tăng Tỷ Lệ Chuyển Đổi",
+    "conversionValue": "+34%",
+    "conversionSub": "so với thương mại truyền thống",
+    "accuracyLabel": "Độ Chính Xác Cá Nhân Hóa",
+    "accuracyValue": "97.2%",
+    "accuracySub": "tỷ lệ khớp hành vi",
+    "sessionLabel": "Phân Tích Phiên",
+    "sessionValue": "Thời gian thực",
+    "sessionSub": "công cụ dự đoán ý định"
+  },
+  "brands": {
+    "trustedBy": "Được tin dùng bởi các thương hiệu tiên phong"
+  },
+  "carousel": {
+    "curatedForYou": "Tuyển Chọn Cho Bạn",
+    "featuredDrops": "Sản Phẩm Nổi Bật",
+    "viewAll": "Xem Tất Cả",
+    "viewAllProducts": "Xem Tất Cả Sản Phẩm",
+    "previewSoon": "Sắp Ra Mắt",
+    "newArrival": "Hàng Mới"
+  },
+  "features": {
+    "badge": "Cách Hoạt Động",
+    "title": "Thương mại <1>hiểu</1> bạn.",
+    "subtitle": "Bốn trụ cột trí tuệ phối hợp cùng nhau để tạo ra trải nghiệm ít giống mua sắm, mà giống khám phá hơn.",
+    "tracking": "Theo Dõi Hành Vi",
+    "trackingDesc": "Mỗi lần cuộn, di chuột và nhấp chuột đều xây dựng hồ sơ ý định sống — không khảo sát, không đoán mò.",
+    "trackingMetric": "150+ tín hiệu",
+    "personalization": "Cá Nhân Hóa Thời Gian Thực",
+    "personalizationDesc": "Danh sách sản phẩm, giá cả và gợi ý tự thích ứng theo tâm trạng bạn trong cùng một phiên.",
+    "personalizationMetric": "<200ms độ trễ",
+    "predictive": "Thương Mại Dự Đoán",
+    "predictiveDesc": "AI dự đoán nhu cầu trước khi bạn tìm kiếm. Hiện đúng sản phẩm vào đúng thời điểm.",
+    "predictiveMetric": "97% chính xác",
+    "checkout": "Thanh Toán Mượt Mà",
+    "checkoutDesc": "Quy trình mua một chạm với gợi ý giỏ hàng AI và chiến lược định giá linh hoạt.",
+    "checkoutMetric": "3x chuyển đổi"
+  },
+  "testimonials": {
+    "badge": "Nhận Xét",
+    "title": "Được tin tưởng bởi <1>những người tiên phong</1>.",
+    "quote1": "NexusAI hiểu phong cách của tôi trước cả tôi. Các gợi ý chính xác đến kỳ lạ — theo cách tốt nhất.",
+    "author1": "Sarah Chen",
+    "role1": "Giám Đốc Sáng Tạo, Studio Mono",
+    "quote2": "Chúng tôi chuyển từ Shopify thông thường. Tỷ lệ chuyển đổi tăng 34% trong tháng đầu tiên. Không quay lại nữa.",
+    "author2": "Marcus Rivera",
+    "role2": "Nhà Sáng Lập, Artifact Supply",
+    "quote3": "Hệ thống hành vi hiển thị sản phẩm tôi không biết mình muốn. Ít giống mua sắm, giống tuyển chọn hơn.",
+    "author3": "Yuki Tanaka",
+    "role3": "Quản Lý Sản Phẩm, East Collective"
+  },
+  "cta": {
+    "title": "Bắt đầu hành trình thương mại <1>thông minh</1>.",
+    "subtitle": "Tham gia làn sóng thương hiệu mới sử dụng trí tuệ hành vi để tạo trải nghiệm mua sắm sống động.",
+    "exploreNow": "Khám Phá Ngay",
+    "learnMore": "Tìm Hiểu Thêm",
+    "stat1": "2.500+ Thương Hiệu",
+    "stat2": "1M+ Người Dùng",
+    "stat3": "99.9% Thời Gian Hoạt Động"
+  },
+  "products": {
+    "catalog": "Danh Mục",
+    "allProducts": "Tất Cả Sản Phẩm",
+    "collection": "Bộ Sưu Tập",
+    "catalogDescription": "Mỗi sản phẩm được tuyển chọn bởi hệ thống phân tích hành vi thông minh, hiển thị những gì quan trọng nhất với bạn.",
+    "itemsFound": "sản phẩm",
+    "filterSystem": "Bộ Lọc",
+    "allArtifacts": "Tất Cả",
+    "loadMore": "Xem Thêm",
+    "noProducts": "Không tìm thấy sản phẩm",
+    "noProductsHint": "Thử điều chỉnh bộ lọc hoặc duyệt toàn bộ bộ sưu tập.",
+    "previewSoon": "Sắp Ra Mắt",
+    "newArrival": "Hàng Mới"
+  },
+  "product": {
+    "addToCart": "Thêm Vào Giỏ",
+    "buyNow": "Mua Ngay",
+    "description": "Mô Tả",
+    "specifications": "Thông Số Kỹ Thuật",
+    "relatedProducts": "Có Thể Bạn Sẽ Thích",
+    "aiPick": "AI Gợi Ý",
+    "inStock": "Còn Hàng",
+    "lowStock": "Sắp Hết",
+    "soldOut": "Hết Hàng",
+    "sku": "Mã SP",
+    "category": "Danh Mục",
+    "quantity": "Số Lượng",
+    "essentialDrop": "Sản Phẩm Tiêu Biểu",
+    "pickedForYou": "Chọn riêng cho bạn",
+    "backToShop": "Quay Lại Cửa Hàng",
+    "share": "Chia Sẻ",
+    "wishlist": "Yêu Thích",
+    "imagePending": "Đang Cập Nhật Ảnh",
+    "imageProduction": "Hình ảnh đang được xử lý"
+  },
+  "footer": {
+    "brand": "Thương Mại Thông Minh. Được hỗ trợ bởi AI cá nhân hóa thời gian thực, học hỏi từ mỗi tương tác của bạn.",
+    "navigation": "Điều Hướng",
+    "company": "Công Ty",
+    "system": "Hệ Thống",
+    "allSystems": "Hệ Thống Hoạt Động Bình Thường",
+    "newArrivals": "Hàng Mới Về",
+    "aiPicks": "AI Gợi Ý",
+    "careers": "Tuyển Dụng",
+    "contact": "Liên Hệ",
+    "privacy": "Bảo Mật",
+    "terms": "Điều Khoản",
+    "cookies": "Cookies",
+    "rights": "Bản quyền thuộc về NexusAI."
+  },
+  "common": {
+    "scroll": "Cuộn"
+  }
+}

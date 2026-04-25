@@ -1,3 +1,163 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── NexusAI × shadcn/ui — Emerald theme ── */
+    --background: 140 21% 7%;      /* canvas  #0F1712 */
+    --foreground: 46 22% 88%;      /* text-primary #E8E4D8 */
+    
+    --card: 127 20% 11%;           /* surface #172318 */
+    --card-foreground: 46 22% 88%;
+    
+    --popover: 137 21% 15%;        /* overlay #1E2E22 */
+    --popover-foreground: 46 22% 88%;
+    
+    --primary: 145 64% 57%;        /* emerald #4CD98A */
+    --primary-hover: 145 74% 67%;
+    --primary-dim: 147 57% 42%;
+    --primary-deep: 151 59% 25%;
+    --primary-border: 145 29% 29%;
+    --primary-foreground: 140 44% 5%; /* on-emerald #0A1A0E */
+    
+    --secondary: 137 27% 15%;      /* border #2A4A36 */
+    --secondary-foreground: 120 22% 67%; /* text-secondary #9ABD9A */
+    
+    --text-secondary: 120 22% 67%;
+    --text-tertiary: 137 21% 51%;  /* #6A9A78 */
+    --text-disabled: 147 21% 29%;  /* #3A5A48 */
+
+    --muted: 137 21% 15%;
+    --muted-foreground: 137 21% 51%;
+    
+    --accent: 140 21% 12%;         /* emerald-muted */
+    --accent-foreground: 145 64% 57%;
+    
+    --destructive: 0 80% 72%;      /* danger #F08080 */
+    --destructive-muted: 0 39% 12%;
+    --destructive-text: 0 80% 72%;
+    --destructive-foreground: 46 22% 88%;
+    
+    --success: 145 64% 57%;
+    --success-muted: 140 21% 12%;
+    --success-text: 145 74% 67%;
+    
+    --warning: 42 78% 60%;         /* #E8B84A */
+    --warning-muted: 36 36% 10%;
+    --warning-text: 42 78% 60%;
+
+    --border: 140 21% 20%;
+    --input: 137 21% 15%;
+    --ring: 145 64% 57%;
+    --radius: 0.75rem;
+  }
+
+  body {
+    @apply bg-canvas text-text-primary antialiased selection:bg-emerald/30;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Grain Overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  /* ── Light Mode Overrides ── */
+  .light {
+    --background: 137 8% 96%;        /* #F5F7F5 */
+    --foreground: 140 22% 16%;       /* #1A2E1E */
+
+    --card: 0 0% 100%;               /* #FFFFFF */
+    --card-foreground: 140 22% 16%;
+
+    --popover: 137 14% 95%;          /* #F0F4F1 */
+    --popover-foreground: 140 22% 16%;
+
+    --primary: 147 57% 42%;          /* #2EAA65 */
+    --primary-hover: 147 57% 36%;
+    --primary-dim: 147 57% 30%;
+    --primary-deep: 151 59% 20%;
+    --primary-border: 135 25% 72%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 135 16% 82%;        /* #C8DACA */
+    --secondary-foreground: 140 30% 32%;
+
+    --text-secondary: 140 30% 32%;   /* #3A6A48 */
+    --text-tertiary: 137 25% 47%;    /* #5A8A68 */
+    --text-disabled: 135 16% 72%;
+
+    --muted: 137 14% 95%;
+    --muted-foreground: 137 25% 47%;
+
+    --accent: 137 30% 92%;
+    --accent-foreground: 147 57% 35%;
+
+    --destructive: 0 70% 55%;
+    --destructive-muted: 0 30% 95%;
+    --destructive-text: 0 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 147 57% 42%;
+    --success-muted: 137 30% 92%;
+    --success-text: 147 57% 32%;
+
+    --warning: 42 78% 50%;
+    --warning-muted: 42 40% 94%;
+    --warning-text: 42 78% 38%;
+
+    --border: 135 16% 82%;
+    --input: 135 16% 88%;
+    --ring: 147 57% 42%;
+  }
+
+  .light body::before {
+    opacity: 0;
+  }
+
+  .light body {
+    @apply selection:bg-emerald/20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .glass-card {
+    @apply bg-surface/80 backdrop-blur-md border border-border;
+  }
+  
+  .emerald-gradient-border {
+    background: linear-gradient(135deg, #2A5A3F 0%, #1A2E20 50%, #2A5A3F 100%);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}

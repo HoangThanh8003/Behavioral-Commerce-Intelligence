@@ -13,11 +13,14 @@ export class ProductsService {
   }
 
   async findAll(query: { categoryId?: string; page?: number; limit?: number }) {
-    const skip = ((query.page || 1) - 1) * (query.limit || 10);
+    const page = Number(query.page || 1);
+    const limit = Number(query.limit || 10);
+    const skip = (page - 1) * limit;
+
     return this.repository.findAll({
       categoryId: query.categoryId,
       skip,
-      take: query.limit || 10,
+      take: limit,
     });
   }
 

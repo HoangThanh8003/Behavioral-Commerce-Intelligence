@@ -47,6 +47,7 @@ export interface Category extends BaseEntity {
   imageUrl: string | null;
   sortOrder: number;
   parentId: string | null;
+  products?: Product[]; // Relation
 }
 
 // --- Product ---
@@ -60,6 +61,8 @@ export interface Product extends BaseEntity {
   sku: string;
   imageUrls: string[];
   categoryId: string;
+  category?: Category; // Relation
+  inventory?: Inventory; // Relation
 }
 
 // --- Inventory ---

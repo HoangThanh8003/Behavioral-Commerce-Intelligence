@@ -1,0 +1,133 @@
+{
+  "nav": {
+    "shop": "Shop",
+    "categories": "Categories",
+    "journal": "Journal",
+    "about": "About",
+    "signIn": "Sign In"
+  },
+  "hero": {
+    "badge": "Intelligence Layer Active",
+    "title1": "The Future",
+    "title2": "of",
+    "title3": "Commerce",
+    "title4": "is Personal.",
+    "subtitle": "NexusAI reads real-time behavioral signals to craft an editorial shopping experience — unique to every visitor, every session.",
+    "cta": "Explore Collection",
+    "watchStory": "Watch Story"
+  },
+  "stats": {
+    "conversionLabel": "Conversion Uplift",
+    "conversionValue": "+34%",
+    "conversionSub": "vs traditional e-commerce",
+    "accuracyLabel": "Personalization Accuracy",
+    "accuracyValue": "97.2%",
+    "accuracySub": "behavioral match rate",
+    "sessionLabel": "Session Intelligence",
+    "sessionValue": "Real-time",
+    "sessionSub": "intent prediction engine"
+  },
+  "brands": {
+    "trustedBy": "Trusted by forward-thinking brands"
+  },
+  "carousel": {
+    "curatedForYou": "Curated for You",
+    "featuredDrops": "Featured Drops",
+    "viewAll": "View All",
+    "viewAllProducts": "View All Products",
+    "previewSoon": "Preview Soon",
+    "newArrival": "New Arrival"
+  },
+  "features": {
+    "badge": "How It Works",
+    "title": "Commerce that <1>understands</1> you.",
+    "subtitle": "Four pillars of intelligence working together to create an experience that feels less like shopping, more like discovery.",
+    "tracking": "Behavioral Tracking",
+    "trackingDesc": "Every scroll, hover, and click builds a living profile of intent — no surveys, no guessing.",
+    "trackingMetric": "150+ signals",
+    "personalization": "Real-time Personalization",
+    "personalizationDesc": "Product feeds, pricing, and recommendations adapt to your mood within the same session.",
+    "personalizationMetric": "<200ms latency",
+    "predictive": "Predictive Commerce",
+    "predictiveDesc": "AI anticipates what you need before you search. Surfacing the right product at the right moment.",
+    "predictiveMetric": "97% accuracy",
+    "checkout": "Frictionless Checkout",
+    "checkoutDesc": "One-tap purchase flow with AI-optimized cart suggestions and dynamic pricing strategies.",
+    "checkoutMetric": "3x conversion"
+  },
+  "testimonials": {
+    "badge": "What They Say",
+    "title": "Trusted by <1>visionaries</1>.",
+    "quote1": "NexusAI understood my style before I did. The recommendations feel eerily accurate — in the best way.",
+    "author1": "Sarah Chen",
+    "role1": "Creative Director, Studio Mono",
+    "quote2": "We switched from a generic Shopify setup. 34% lift in conversion within the first month. No going back.",
+    "author2": "Marcus Rivera",
+    "role2": "Founder, Artifact Supply",
+    "quote3": "The behavioral engine surfaces products I didn't know I wanted. It's less shopping, more curating.",
+    "author3": "Yuki Tanaka",
+    "role3": "Product Manager, East Collective"
+  },
+  "cta": {
+    "title": "Start your <1>intelligent</1> commerce journey.",
+    "subtitle": "Join the next wave of brands using behavioral intelligence to create shopping experiences that feel alive.",
+    "exploreNow": "Explore Now",
+    "learnMore": "Learn More",
+    "stat1": "2,500+ Brands",
+    "stat2": "1M+ Users",
+    "stat3": "99.9% Uptime"
+  },
+  "products": {
+    "catalog": "Catalog",
+    "allProducts": "All Products",
+    "collection": "Collection",
+    "catalogDescription": "Each product is curated through our behavioral intelligence engine, surfacing what matters most to you.",
+    "itemsFound": "items found",
+    "filterSystem": "Filter System",
+    "allArtifacts": "All Artifacts",
+    "loadMore": "Load More",
+    "noProducts": "No products found",
+    "noProductsHint": "Try adjusting your filters or browse our full collection.",
+    "previewSoon": "Preview Soon",
+    "newArrival": "New Arrival"
+  },
+  "product": {
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "description": "Description",
+    "specifications": "Specifications",
+    "relatedProducts": "You May Also Like",
+    "aiPick": "AI Pick",
+    "inStock": "In Stock",
+    "lowStock": "Low Stock",
+    "soldOut": "Sold Out",
+    "sku": "SKU",
+    "category": "Category",
+    "quantity": "Quantity",
+    "essentialDrop": "Essential Drop",
+    "pickedForYou": "Picked for you",
+    "backToShop": "Back to Shop",
+    "share": "Share",
+    "wishlist": "Add to Wishlist",
+    "imagePending": "Image Pending",
+    "imageProduction": "Visual artifact in production"
+  },
+  "footer": {
+    "brand": "Behavioral Commerce Intelligence. Powered by real-time AI personalization that learns from every interaction.",
+    "navigation": "Navigation",
+    "company": "Company",
+    "system": "System",
+    "allSystems": "All Systems Operational",
+    "newArrivals": "New Arrivals",
+    "aiPicks": "AI Picks",
+    "careers": "Careers",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "cookies": "Cookies",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "scroll": "Scroll"
+  }
+}

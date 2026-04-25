@@ -5,6 +5,7 @@
   "main": "tailwind.config.js",
   "files": [
     "tsconfig.base.json",
+    "nextjs.json",
     "tailwind.config.js"
   ]
 }
