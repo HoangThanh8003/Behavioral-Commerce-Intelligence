@@ -2,7 +2,7 @@
   "name": "nexus-ai",
   "version": "0.1.0",
   "private": true,
-  "description": "NexusAI - Hyper-Personalized Commerce Platform",
+  "description": "ZENTO - Premium Workspace & Tech Lifestyle Gear",
   "workspaces": [
     "apps/*",
     "packages/*"

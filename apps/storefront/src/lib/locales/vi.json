@@ -1,37 +1,38 @@
 {
   "nav": {
     "shop": "Cửa Hàng",
-    "categories": "Danh Mục",
+    "categories": "Bộ Sưu Tập",
     "journal": "Tạp Chí",
     "about": "Giới Thiệu",
     "signIn": "Đăng Nhập"
   },
   "hero": {
-    "badge": "Tầng Trí Tuệ Đang Hoạt Động",
-    "title1": "Tương Lai",
-    "title2": "của",
-    "title3": "Thương Mại",
-    "title4": "là Cá Nhân Hóa.",
-    "subtitle": "NexusAI đọc tín hiệu hành vi thời gian thực để tạo ra trải nghiệm mua sắm độc đáo — riêng biệt cho từng khách hàng, từng phiên truy cập.",
+    "badge": "Bộ Sưu Tập 01",
+    "title1": "Kiến Tạo Sự Tĩnh Lặng.",
+    "title2": "Kỹ Thuật Của Sự Tập Trung.",
+    "title3": "",
+    "title4": "",
+    "subtitle": "Được chế tác cho sự tập trung. Thiết kế cho sự tĩnh lặng. Một bộ sưu tập tuyển chọn các thiết bị công nghệ cao cấp cho môi trường chuyên nghiệp.",
     "cta": "Khám Phá Bộ Sưu Tập",
-    "watchStory": "Xem Câu Chuyện"
+    "watchStory": "Quy Trình",
+    "sku": "SKU-094.02 // 10.7626° N, 106.6602° E"
   },
   "stats": {
-    "conversionLabel": "Tăng Tỷ Lệ Chuyển Đổi",
-    "conversionValue": "+34%",
-    "conversionSub": "so với thương mại truyền thống",
-    "accuracyLabel": "Độ Chính Xác Cá Nhân Hóa",
-    "accuracyValue": "97.2%",
-    "accuracySub": "tỷ lệ khớp hành vi",
-    "sessionLabel": "Phân Tích Phiên",
-    "sessionValue": "Thời gian thực",
-    "sessionSub": "công cụ dự đoán ý định"
+    "conversionLabel": "Thủ Công",
+    "conversionValue": "Cao Cấp",
+    "conversionSub": "Vật Liệu Loại A",
+    "accuracyLabel": "Kỹ Thuật",
+    "accuracyValue": "Chính Xác",
+    "accuracySub": "Độ chính xác cấp Micron",
+    "sessionLabel": "Trải Nghiệm",
+    "sessionValue": "Tĩnh Lặng",
+    "sessionSub": "Tập trung không xao nhãng"
   },
   "brands": {
-    "trustedBy": "Được tin dùng bởi các thương hiệu tiên phong"
+    "trustedBy": "Được tin dùng trong những không gian làm việc tinh tế nhất"
   },
   "carousel": {
-    "curatedForYou": "Tuyển Chọn Cho Bạn",
+    "curatedForYou": "Gợi Ý Cho Bạn",
     "featuredDrops": "Sản Phẩm Nổi Bật",
     "viewAll": "Xem Tất Cả",
     "viewAllProducts": "Xem Tất Cả Sản Phẩm",
@@ -39,49 +40,49 @@
     "newArrival": "Hàng Mới"
   },
   "features": {
-    "badge": "Cách Hoạt Động",
-    "title": "Thương mại <1>hiểu</1> bạn.",
-    "subtitle": "Bốn trụ cột trí tuệ phối hợp cùng nhau để tạo ra trải nghiệm ít giống mua sắm, mà giống khám phá hơn.",
-    "tracking": "Theo Dõi Hành Vi",
-    "trackingDesc": "Mỗi lần cuộn, di chuột và nhấp chuột đều xây dựng hồ sơ ý định sống — không khảo sát, không đoán mò.",
-    "trackingMetric": "150+ tín hiệu",
-    "personalization": "Cá Nhân Hóa Thời Gian Thực",
-    "personalizationDesc": "Danh sách sản phẩm, giá cả và gợi ý tự thích ứng theo tâm trạng bạn trong cùng một phiên.",
-    "personalizationMetric": "<200ms độ trễ",
-    "predictive": "Thương Mại Dự Đoán",
-    "predictiveDesc": "AI dự đoán nhu cầu trước khi bạn tìm kiếm. Hiện đúng sản phẩm vào đúng thời điểm.",
-    "predictiveMetric": "97% chính xác",
-    "checkout": "Thanh Toán Mượt Mà",
-    "checkoutDesc": "Quy trình mua một chạm với gợi ý giỏ hàng AI và chiến lược định giá linh hoạt.",
-    "checkoutMetric": "3x chuyển đổi"
+    "badge": "Phong Cách Zento",
+    "title": "Xây dựng cho <1>hiệu suất</1>.",
+    "subtitle": "Ba trụ cột thiết kế tập trung vào việc tạo ra một không gian làm việc thúc đẩy sự tập trung sâu và chính xác.",
+    "tracking": "Kỹ Thuật Âm Thanh",
+    "trackingDesc": "Mỗi phím bấm và bề mặt được tinh chỉnh cho âm thanh trầm ấm, thỏa mãn. Không rung lắc, không xao nhãng.",
+    "trackingMetric": "32dB Tối Đa",
+    "personalization": "Thiết Kế Công Nghiệp",
+    "personalizationDesc": "Nhôm Anodized, nhựa PBT cao cấp và kính cường lực. Được chế tạo để bền bỉ cùng sự tập trung.",
+    "personalizationMetric": "ISO 9001",
+    "predictive": "Công Thái Học",
+    "predictiveDesc": "Các góc độ và đường cong được thiết kế để hỗ trợ tư thế tự nhiên trong suốt phiên làm việc kéo dài.",
+    "predictiveMetric": "Ortholinear",
+    "checkout": "Tích Hợp Mượt Mà",
+    "checkoutDesc": "Tương thích phổ quát trên các hệ thống. Một sợi cáp, sự tập trung vô hạn.",
+    "checkoutMetric": "Cắm & Chạy"
   },
   "testimonials": {
-    "badge": "Nhận Xét",
-    "title": "Được tin tưởng bởi <1>những người tiên phong</1>.",
-    "quote1": "NexusAI hiểu phong cách của tôi trước cả tôi. Các gợi ý chính xác đến kỳ lạ — theo cách tốt nhất.",
-    "author1": "Sarah Chen",
-    "role1": "Giám Đốc Sáng Tạo, Studio Mono",
-    "quote2": "Chúng tôi chuyển từ Shopify thông thường. Tỷ lệ chuyển đổi tăng 34% trong tháng đầu tiên. Không quay lại nữa.",
-    "author2": "Marcus Rivera",
-    "role2": "Nhà Sáng Lập, Artifact Supply",
-    "quote3": "Hệ thống hành vi hiển thị sản phẩm tôi không biết mình muốn. Ít giống mua sắm, giống tuyển chọn hơn.",
-    "author3": "Yuki Tanaka",
-    "role3": "Quản Lý Sản Phẩm, East Collective"
+    "badge": "Cộng Đồng",
+    "title": "Lựa chọn của <1>chuyên gia</1>.",
+    "quote1": "Bàn phím Zento là công cụ đầu tiên thực sự biến mất khi tôi làm việc. Sự tĩnh lặng thật sâu sắc.",
+    "author1": "James Wilson",
+    "role1": "Kiến Trúc Sư Phần Mềm",
+    "quote2": "Đèn màn hình đã thay đổi cách tôi nhìn bàn làm việc. Không lóa, chỉ có ánh sáng hoàn hảo cho công việc.",
+    "author2": "Elena Rossi",
+    "role2": "Trưởng Thiết Kế Sản Phẩm",
+    "quote3": "Sự tối giản không đánh đổi tiện ích. Mỗi chi tiết đều mang một mục đích rõ ràng.",
+    "author3": "Kenji Sato",
+    "role3": "Giám Đốc Sản Xuất"
   },
   "cta": {
-    "title": "Bắt đầu hành trình thương mại <1>thông minh</1>.",
-    "subtitle": "Tham gia làn sóng thương hiệu mới sử dụng trí tuệ hành vi để tạo trải nghiệm mua sắm sống động.",
-    "exploreNow": "Khám Phá Ngay",
-    "learnMore": "Tìm Hiểu Thêm",
-    "stat1": "2.500+ Thương Hiệu",
-    "stat2": "1M+ Người Dùng",
-    "stat3": "99.9% Thời Gian Hoạt Động"
+    "title": "Nâng tầm <1>không gian</1> của bạn.",
+    "subtitle": "Gia nhập cộng đồng những chuyên gia lựa chọn sự chính xác thay vì tiếng ồn.",
+    "exploreNow": "Mua Ngay",
+    "learnMore": "Triết Lý Của Chúng Tôi",
+    "stat1": "Giao Hàng Toàn Cầu",
+    "stat2": "Bảo Hành 2 Năm",
+    "stat3": "Hỗ Trợ 24/7"
   },
   "products": {
     "catalog": "Danh Mục",
     "allProducts": "Tất Cả Sản Phẩm",
     "collection": "Bộ Sưu Tập",
-    "catalogDescription": "Mỗi sản phẩm được tuyển chọn bởi hệ thống phân tích hành vi thông minh, hiển thị những gì quan trọng nhất với bạn.",
+    "catalogDescription": "Mỗi chi tiết được chế tác cho không gian làm việc chuyên nghiệp hiện đại.",
     "itemsFound": "sản phẩm",
     "filterSystem": "Bộ Lọc",
     "allArtifacts": "Tất Cả",
@@ -89,15 +90,15 @@
     "noProducts": "Không tìm thấy sản phẩm",
     "noProductsHint": "Thử điều chỉnh bộ lọc hoặc duyệt toàn bộ bộ sưu tập.",
     "previewSoon": "Sắp Ra Mắt",
-    "newArrival": "Hàng Mới"
+    "newArrival": "Mới"
   },
   "product": {
     "addToCart": "Thêm Vào Giỏ",
     "buyNow": "Mua Ngay",
-    "description": "Mô Tả",
+    "description": "Chi Tiết",
     "specifications": "Thông Số Kỹ Thuật",
-    "relatedProducts": "Có Thể Bạn Sẽ Thích",
-    "aiPick": "AI Gợi Ý",
+    "relatedProducts": "Gợi Ý Cho Bạn",
+    "aiPick": "Tuyển Chọn",
     "inStock": "Còn Hàng",
     "lowStock": "Sắp Hết",
     "soldOut": "Hết Hàng",
@@ -105,29 +106,83 @@
     "category": "Danh Mục",
     "quantity": "Số Lượng",
     "essentialDrop": "Sản Phẩm Tiêu Biểu",
-    "pickedForYou": "Chọn riêng cho bạn",
-    "backToShop": "Quay Lại Cửa Hàng",
+    "pickedForYou": "Gợi Ý",
+    "backToShop": "Quay Lại Bộ Sưu Tập",
     "share": "Chia Sẻ",
     "wishlist": "Yêu Thích",
     "imagePending": "Đang Cập Nhật Ảnh",
     "imageProduction": "Hình ảnh đang được xử lý"
   },
   "footer": {
-    "brand": "Thương Mại Thông Minh. Được hỗ trợ bởi AI cá nhân hóa thời gian thực, học hỏi từ mỗi tương tác của bạn.",
+    "brand": "Thiết Bị Làm Việc Chính Xác. Kỹ thuật cho sự tập trung, thiết kế cho sự tĩnh lặng.",
     "navigation": "Điều Hướng",
-    "company": "Công Ty",
-    "system": "Hệ Thống",
-    "allSystems": "Hệ Thống Hoạt Động Bình Thường",
+    "company": "Zento",
+    "system": "Trạng Thái",
+    "allSystems": "Giao Hàng Toàn Cầu",
     "newArrivals": "Hàng Mới Về",
-    "aiPicks": "AI Gợi Ý",
+    "aiPicks": "Tuyển Chọn",
     "careers": "Tuyển Dụng",
     "contact": "Liên Hệ",
     "privacy": "Bảo Mật",
     "terms": "Điều Khoản",
     "cookies": "Cookies",
-    "rights": "Bản quyền thuộc về NexusAI."
+    "rights": "Bản quyền thuộc về Zento."
   },
   "common": {
-    "scroll": "Cuộn"
+    "scroll": "Khám Phá"
+  },
+  "home": {
+    "hero": {
+      "badge": "PHIÊN BẢN 01 / NGUỒN GỐC",
+      "headline": "Nghệ Thuật Của Sự Tĩnh Lặng. Khoa Học Của Sự Tập Trung.",
+      "subtext": "Chúng tôi tạo ra những công cụ cho chuyên gia hiện đại. Được chế tác cho sự theo đuổi sự tinh thông trong tĩnh lặng.",
+      "industrialDetail": "LÔ_SẢN_XUẤT_001 // ĐÃ ĐIỀU CHỈNH TẠI OSLO",
+      "ctaPrimary": "Khám Phá Bản Tuyển Chọn",
+      "ctaSecondary": "Triết Lý Của Chúng Tôi"
+    },
+    "currentEdit": {
+      "headline": "Dấu Ấn Thẩm Mỹ Của Bạn",
+      "subtext": "Được tuyển chọn ngầm dựa trên tương tác của bạn.",
+      "hint": "Đang thích nghi với phong cách làm việc của bạn..."
+    },
+    "categories": {
+      "headline": "Bộ Sưu Tập",
+      "keyboard": "Công cụ gõ chính xác.",
+      "audio": "Sự tĩnh lặng độ trung thực cao.",
+      "lighting": "Ánh sáng có kiểm soát.",
+      "accessories": "Phụ kiện tinh tế."
+    },
+    "personaSwitcher": {
+      "headline": "Điều Phối Không Gian",
+      "copy": "Đồng bộ không gian làm việc với nghi thức của bạn.",
+      "minimalist": "Người Tối Giản",
+      "nightOwl": "Cú Đêm",
+      "architect": "Kiến Trúc Sư"
+    },
+    "systemFit": {
+      "headline": "Thiết Lập Không Gian Làm Việc Tuyển Chọn",
+      "description": "Các thiết bị của chúng tôi được chế tạo để hoạt động như một môi trường duy nhất. Hệ sinh thái tích hợp cho chuyên gia hiện đại.",
+      "tone": "Hiệu suất tích hợp."
+    },
+    "engineeredDetail": {
+      "headline": "Logic Trong Thiết Kế",
+      "actuation": "KÍCH HOẠT ĐÃ HIỆU CHUẨN: 45G",
+      "material": "LÕI: NHÔM ANODIZED 6061",
+      "profile": "TRIỆT TIÊU ÂM THANH: ĐỆM FOAM HAI LỚP",
+      "connection": "TÍN HIỆU: KHÔNG DÂY ĐỘ TRỄ CỰC THẤP"
+    },
+    "ritualOfUse": {
+      "headline": "Nghi Thức Chính Xác",
+      "tone": "Tập trung. Kiểm soát. Sự chuyển động có tính toán của quy trình làm việc chuyên nghiệp. Mỗi tương tác là một hành động có chủ đích đã được hiệu chuẩn."
+    },
+    "materialDepth": {
+      "headline": "Mật Độ Vật Liệu",
+      "focus": "Tính toàn vẹn cấu trúc. Kim loại anodized, kính cường lực, polymer chính xác. Trọng lượng công nghiệp của các thành phần cao cấp."
+    },
+    "transmissionFeed": {
+      "newDrop": "Một không gian làm việc được tinh chỉnh tại Tokyo.",
+      "refining": "Chế độ Cú Đêm đã được kích hoạt tại New York.",
+      "location": "Bộ sưu tập 01 đang đạt mức tập trung tuyệt đối toàn cầu."
+    }
   }
 }

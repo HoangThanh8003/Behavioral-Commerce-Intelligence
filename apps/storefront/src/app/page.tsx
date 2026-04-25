@@ -1,28 +1,54 @@
 import { Metadata } from 'next';
-import { getFeaturedProducts } from '@/services/products';
+import { getFeaturedProducts, getCategories } from '@/services/products';
 import { Hero } from '@/components/features/home/Hero';
-import { ProductCarousel } from '@/components/features/home/ProductCarousel';
-import { BrandMarquee } from '@/components/features/home/BrandMarquee';
-import { Features } from '@/components/features/home/Features';
-import { Testimonials } from '@/components/features/home/Testimonials';
-import { CTABanner } from '@/components/features/home/CTABanner';
+import { FeaturedCollection } from '@/components/features/home/FeaturedCollection';
+import { CategorySection } from '@/components/features/home/CategorySection';
+import { PersonaSwitcher } from '@/components/features/home/PersonaSwitcher';
+import { SystemFit } from '@/components/features/home/SystemFit';
+import { EngineeredDetail } from '@/components/features/home/EngineeredDetail';
+import { RitualOfUse } from '@/components/features/home/RitualOfUse';
+import { EngineeredSurfaces } from '@/components/features/home/EngineeredSurfaces';
+import { TransmissionFeed } from '@/components/features/home/TransmissionFeed';
 
 export const metadata: Metadata = {
-  title: 'NexusAI | Behavioral Commerce Intelligence',
-  description: 'Experience hyper-personalized commerce driven by real-time AI intent analysis. Shop smarter with NexusAI.',
+  title: 'ZENTO | Precision Workspace Gear',
+  description: 'Engineered silence. Precision focus. High-end mechanical instruments and workspace ecosystems for the modern professional.',
 };
 
 export default async function HomePage() {
   const products = await getFeaturedProducts();
+  const categories = await getCategories();
+  
+  const featuredProducts = products.slice(0, 3); // For the asymmetrical grid
 
   return (
-    <main>
+    <main className="bg-canvas min-h-screen">
+      {/* 1. Cinematic Hero Section */}
       <Hero />
-      <BrandMarquee />
-      <ProductCarousel products={products} />
-      <Features />
-      <Testimonials />
-      <CTABanner />
+
+      {/* 2. The Current Edit (Bento Grid) */}
+      <FeaturedCollection products={featuredProducts} />
+
+      {/* 3. Categories (Collections) */}
+      <CategorySection categories={categories} />
+
+      {/* 4. Persona Switcher */}
+      <PersonaSwitcher />
+
+      {/* 5. System Fit (Workspace Ecosystems) */}
+      <SystemFit />
+
+      {/* 6. Engineered Detail (Spec Sheet Section) */}
+      <EngineeredDetail />
+
+      {/* 7. Ritual of Use */}
+      <RitualOfUse />
+
+      {/* 8. Engineered Surfaces */}
+      <EngineeredSurfaces />
+
+      {/* 9. Transmission Feed (Subtle Real-time Feel) */}
+      <TransmissionFeed />
     </main>
   );
 }

@@ -3,7 +3,7 @@ services:
     image: ankane/pgvector:latest
     container_name: nexus-db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: nexus
       POSTGRES_PASSWORD: nexus_dev_password

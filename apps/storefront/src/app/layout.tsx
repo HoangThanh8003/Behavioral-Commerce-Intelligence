@@ -25,8 +25,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NexusAI | Behavioral Commerce Intelligence",
-  description: "Experience hyper-personalized commerce driven by real-time AI intent analysis.",
+  title: "ZENTO | Precision Workspace Gear",
+  description: "Crafting silence. Engineering focus. High-end mechanical keyboards, audio, and workspace essentials for the modern professional.",
+  icons: {
+    icon: "/images/logo/logo-icon.png",
+  },
 };
 
 export default function RootLayout({

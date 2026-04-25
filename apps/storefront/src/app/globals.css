@@ -125,6 +125,49 @@
   .light body {
     @apply selection:bg-emerald/20;
   }
+
+  /* ── Persona Themes (Transition handled via CSS classes on body) ── */
+  html {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  /* The Architect Theme (Titan Gray / Industrial Blue) */
+  .theme-architect {
+    --background: 215 28% 7%;      /* #0D1117 */
+    --card: 215 22% 10%;           /* #161B22 */
+    --popover: 215 22% 10%;
+    --primary: 212 100% 66%;       /* #58A6FF */
+    --primary-foreground: 215 28% 7%;
+    --text-secondary: 215 14% 65%;
+    --text-tertiary: 215 14% 45%;
+    --border: 215 22% 18%;
+    --ring: 212 100% 66%;
+  }
+  .theme-architect body {
+    @apply selection:bg-[#58A6FF]/30;
+  }
+
+  /* The Minimalist Theme (Absolute Black / Pure White) */
+  .theme-minimalist {
+    --background: 0 0% 2%;         /* #050505 */
+    --card: 0 0% 5%;               /* #0D0D0D */
+    --primary: 0 0% 90%;           /* #E5E5E5 */
+    --primary-foreground: 0 0% 0%;
+    --text-secondary: 0 0% 60%;
+    --border: 0 0% 12%;
+    --ring: 0 0% 90%;
+  }
+
+  /* The Night Owl Theme (Deep Emerald) */
+  .theme-nightowl {
+    --background: 140 30% 3%;      /* #030603 */
+    --card: 140 25% 6%;           /* #081008 */
+    --primary: 160 84% 39%;        /* #10b981 */
+    --primary-foreground: 140 30% 3%;
+    --text-secondary: 140 15% 60%;
+    --border: 140 25% 15%;
+    --ring: 160 84% 39%;
+  }
 }
 
 @layer utilities {

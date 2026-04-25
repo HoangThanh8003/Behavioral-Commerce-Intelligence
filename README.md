@@ -1,66 +1,64 @@
-# 🚀 NexusAI: Behavioral Commerce Intelligence Platform
+# 🏔️ ZENTO: Precision Workspace & Tech Lifestyle
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tech Stack](https://img.shields.io/badge/Stack-Next.js%post%20NestJS%20%post%20FastAPI-blue)](https://nexusai.io)
+[![Tech Stack](https://img.shields.io/badge/Stack-Next.js%20%7C%20NestJS%20%7C%20FastAPI-blue)](#-tech-stack)
 [![Architecture: Monorepo](https://img.shields.io/badge/Architecture-Monorepo-orange)](#-architecture)
 
-**NexusAI** is a hyper-personalized commerce platform that bridges the gap between customer behavior and retail intelligence. By leveraging real-time behavioral tracking (clicks, hovers, scroll patterns), the platform utilizes high-performance AI to classify customer **Personas** and deliver instant, context-aware shopping suggestions via WebSockets.
+**ZENTO** is a premium ecommerce platform designed for the modern professional. We curate high-end workspace gear and tech lifestyle essentials, delivering a personalized shopping experience that respects your focus and rewards your taste.
 
 ---
 
-## 🌟 Key Features
+## 🌟 The ZENTO Experience
 
--   **🎯 Behavioral Persona Scoring**: Latency-free classification of users based on micro-interactions (clicks, hovers, dwell time).
--   **⚡ Real-time Smart Nudges**: Contextual product recommendations and incentives delivered via Socket.io.
--   **🧠 AI-Driven Insights**: Vector-based semantic search and similarity matching using `pgvector`.
--   **🏗️ Event-Driven Scaling**: Asynchronous task processing for persona calculation and notification delivery using BullMQ and RabbitMQ.
--   **📊 Analytics Dashboard**: Comprehensive view of customer behavior patterns and conversion funnels.
+-   **🎯 Curated Personalization**: A shopping journey that adapts to your preferences, surfacing the right tools for your specific workflow.
+-   **⚡ Effortless Discovery**: Real-time suggestions and tailored collections that simplify finding your next setup upgrade.
+-   **🧠 Precision Search**: Semantic, intent-aware search that understands exactly what you're looking for.
+-   **🏗️ Engineered for Focus**: A high-performance, editorial storefront designed with a minimal, Techno-Industrial Noir aesthetic.
+-   **📊 Workspace Insights**: Internal analytics that help us refine our collection to better serve the professional collective.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Core Technology
 
-NexusAI is built with a modern, high-performance tech stack designed for scalability and developer experience:
+ZENTO is built on a production-grade monorepo stack optimized for performance and reliability:
 
--   **Frontend**: [Next.js 14+](https://nextjs.org/) (App Router), [Tailwind CSS](https://tailwindcss.com/), [Lucide React](https://lucide.dev/).
--   **Backend**: [NestJS](https://nestjs.com/) (Clean Architecture, DDD), [Prisma ORM](https://www.prisma.io/).
--   **AI Brain**: [Python 3.11+](https://www.python.org/), [FastAPI](https://fastapi.tiangolo.com/), [Scikit-learn](https://scikit-learn.org/).
--   **Databases**: [PostgreSQL](https://www.postgresql.org/) (with `pgvector`), [Redis](https://redis.io/).
--   **Messaging**: [RabbitMQ](https://www.rabbitmq.com/), [BullMQ](https://docs.bullmq.io/).
--   **Infrastructure**: [Docker](https://www.docker.com/), [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces).
+-   **Frontend**: [Next.js 14](https://nextjs.org/) (App Router), [Tailwind CSS](https://tailwindcss.com/) — A premium, editorial commerce storefront.
+-   **Backend**: [NestJS](https://nestjs.com/) (Clean Architecture) — Secure, scalable commerce engine.
+-   **Intelligence Layer**: [Python FastAPI](https://fastapi.tiangolo.com/) — Powers internal personalization and intent analysis.
+-   **Infrastructure**: [PostgreSQL](https://www.postgresql.org/) (pgvector), [Redis](https://redis.io/), [RabbitMQ](https://www.rabbitmq.com/).
 
 ---
 
 ## 🏗️ Architecture
 
-The system follows a **Monorepo** architecture, separating concerns across specialized micro-services:
+ZENTO utilizes a specialized monorepo structure to separate concerns and ensure a seamless experience:
 
 ```mermaid
 graph TD
     A[Storefront - Next.js] -->|Events| B[Core-Backend - NestJS]
-    C[Dashboard - Next.js] -->|Admin API| B
+    C[Dashboard - Admin] -->|Management| B
     B -->|Task Queue| D[(Redis / BullMQ)]
-    B -->|RPC/REST| E[AI-Brain - FastAPI]
-    E -->|Vector Search| F[(PostgreSQL + pgvector)]
-    B -->|Real-time| A
-    B -->|Events| G[RabbitMQ]
+    B -->|Intelligence| E[AI-Brain - FastAPI]
+    E -->|Precision Search| F[(PostgreSQL + pgvector)]
+    B -->|Personalization| A
 ```
 
 ---
 
-## 📂 Project Structure
+## 📂 Monorepo Map
 
 ```text
-nexus-ai/
+zento/
 ├── apps/
-│   ├── storefront/     # Customer-facing Next.js application
-│   ├── dashboard/      # Admin analytics dashboard
-│   ├── core-backend/   # NestJS API & Business Logic (DDD)
-│   └── ai-brain/       # Python FastAPI for behavior modeling
+│   ├── storefront/     # The Product: Premium customer experience
+│   ├── dashboard/      # Admin & Operational Intelligence
+│   ├── core-backend/   # Commerce logic, API & Infrastructure
+│   └── ai-brain/       # Personalization & Intent processing
 ├── packages/
-│   └── shared/         # Shared TypeScript types and utilities
-├── docker-compose.yml  # Infrastructure as Code
-└── package.json        # Monorepo Workspace configuration
+│   ├── event-schema/   # Single Source of Truth for behavior data
+│   ├── types/          # Shared TypeScript interfaces
+│   └── shared/         # Reusable commerce utilities
+└── docker-compose.yml  # Infrastructure (Postgres, Redis, MQ)
 ```
 
 ---
@@ -70,40 +68,36 @@ nexus-ai/
 ### Prerequisites
 
 -   [Node.js 18+](https://nodejs.org/)
+-   [Yarn 4+](https://yarnpkg.com/)
 -   [Docker & Docker Compose](https://www.docker.com/)
--   [Python 3.11+](https://www.python.org/)
 
-### 1. Initialize the Infrastructure
-
-The entire supporting infrastructure (PostgreSQL, Redis, RabbitMQ) can be launched with a single command:
+### 1. Initialize Infrastructure
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
-### 2. Install Dependencies
+### 2. Install & Build
 
 ```bash
-npm install
+yarn install
+yarn build
 ```
 
-### 3. Environment Setup
-
-Copy the environment examples (once initialized) and configure your secrets:
+### 3. Start Development
 
 ```bash
-cp .env.example .env
+yarn dev
 ```
 
 ---
 
-## 📜 NexusAI Constitution
+## 📜 Engineering Standards
 
-This project adheres to high-level engineering standards:
-*   **NO 'any'**: Strict TypeScript across the entire board.
-*   **DDD (Domain-Driven Design)**: Business logic is decoupled from endpoints.
-*   **Async First**: All heavy computation is offloaded to background workers.
-*   **Security**: Zod-validated environment variables and secrets management.
+-   **Strict TypeScript**: No `any` allowed. Complete type safety across boundaries.
+-   **Clean Architecture**: Business logic is decoupled from external interfaces.
+-   **Async Processing**: Heavy operations (personalization, emails) are handled via message queues.
+-   **Modular Design**: Reusable packages for events, types, and configurations.
 
 ---
 
@@ -112,4 +106,4 @@ This project adheres to high-level engineering standards:
 **Hoang Thanh** - *Visionary Engineer*
 
 ---
-© 2026 NexusAI Project. Built for the future of commerce.
+© 2026 ZENTO. Built for the future of workspace.

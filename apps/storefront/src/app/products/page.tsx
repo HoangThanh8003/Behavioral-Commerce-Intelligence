@@ -1,90 +1,93 @@
 import { Metadata } from 'next';
-import { Suspense } from 'react';
 import { getProducts, getCategories } from '@/services/products';
-import { ProductFilter } from '@/components/features/products/ProductFilter';
-import { ProductGridCard } from '@/components/features/products/ProductGridCard';
+import { ProductCard } from '@/components/features/products/ProductCard';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Shop | NexusAI Catalog',
-  description: 'Discover our curated collection of products, intelligently personalized for your behavioral profile.',
+  title: 'Catalog | ZENTO Precision Gear',
+  description: 'Browse the complete ZENTO collection of precision instruments and workspace components.',
 };
 
-interface ProductsPageProps {
-  searchParams: { category?: string; page?: string };
-}
-
-export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: { category?: string; search?: string; page?: string };
+}) {
+  const categoryId = searchParams.category;
+  const page = Number(searchParams.page || 1);
+  
   const [products, categories] = await Promise.all([
-    getProducts({
-      categoryId: searchParams.category,
-      page: searchParams.page ? parseInt(searchParams.page) : 1,
-      limit: 12,
-    }),
-    getCategories(),
+    getProducts({ categoryId, page, limit: 12 }),
+    getCategories()
   ]);
 
   return (
-    <main className="min-h-screen pt-28 pb-20">
+    <main className="bg-canvas min-h-screen pt-32 pb-24">
       <div className="container mx-auto px-6 md:px-10">
-        {/* Page Header */}
-        <header className="mb-16 space-y-6">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-12 bg-emerald/50" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-emerald">
-              Catalog
-            </span>
-          </div>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div>
-              <h1 className="font-display text-5xl md:text-6xl font-bold text-text-primary tracking-tight">
-                {searchParams.category
-                  ? categories.find(c => c.id === searchParams.category)?.name || 'Collection'
-                  : 'All Products'
-                }
-              </h1>
-              <p className="font-body text-base text-text-secondary mt-2 max-w-lg">
-                Each product is curated through our behavioral intelligence engine,
-                surfacing what matters most to you.
-              </p>
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-text-tertiary">
+                The Catalog
+              </span>
             </div>
-            <span className="font-mono text-xs text-text-tertiary">
-              {products.length} items found
-            </span>
+            <h1 className="font-serif text-5xl md:text-7xl font-bold text-text-primary tracking-tighter">
+              All <span className="italic text-text-secondary">Instruments.</span>
+            </h1>
           </div>
-        </header>
-
-        {/* Filters */}
-        <Suspense fallback={null}>
-          <div className="mb-12">
-            <ProductFilter categories={categories} />
-          </div>
-        </Suspense>
-
-        {/* Product Grid */}
-        {products.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {products.map((product, index) => (
-              <ProductGridCard key={product.id} product={product} index={index} />
+          
+          <div className="flex flex-wrap gap-3">
+            {/* Simple Category Filter */}
+            <a 
+              href="/products"
+              className={`px-6 py-2 rounded-full border font-mono text-[10px] uppercase tracking-widest transition-all ${
+                !categoryId ? 'bg-primary text-canvas border-primary' : 'border-border text-text-secondary hover:border-primary/50'
+              }`}
+            >
+              All
+            </a>
+            {categories.map((cat) => (
+              <a
+                key={cat.id}
+                href={`/products?category=${cat.id}`}
+                className={`px-6 py-2 rounded-full border font-mono text-[10px] uppercase tracking-widest transition-all ${
+                  categoryId === cat.id ? 'bg-primary text-canvas border-primary' : 'border-border text-text-secondary hover:border-primary/50'
+                }`}
+              >
+                {cat.name}
+              </a>
             ))}
           </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-32 space-y-6">
-            <div className="w-20 h-20 rounded-2xl bg-surface border border-border flex items-center justify-center">
-              <span className="font-display text-3xl text-text-disabled">N</span>
-            </div>
-            <div className="text-center space-y-2">
-              <p className="font-display text-xl text-text-primary">No products found</p>
-              <p className="font-body text-sm text-text-tertiary">
-                Try adjusting your filters or browse our full collection.
-              </p>
-            </div>
-          </div>
-        )}
+        </div>
 
-        {/* Pagination hint */}
+        {/* Product Grid */}
+        <Suspense fallback={<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="aspect-[4/5] bg-surface/30 animate-pulse rounded-sm border border-border" />
+          ))}
+        </div>}>
+          {products.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="py-40 text-center border border-dashed border-border rounded-sm">
+              <p className="font-serif text-2xl text-text-secondary italic">No instruments found in this collection.</p>
+              <a href="/products" className="mt-6 inline-block font-mono text-[10px] uppercase tracking-widest text-primary hover:underline">
+                View All Pieces
+              </a>
+            </div>
+          )}
+        </Suspense>
+
+        {/* Pagination Placeholder */}
         {products.length >= 12 && (
-          <div className="mt-16 text-center">
-            <button className="h-12 rounded-lg border border-border px-10 font-body text-sm text-text-secondary transition-colors hover:border-emerald/40 hover:text-emerald">
+          <div className="mt-20 flex justify-center">
+            <button className="px-12 py-4 border border-border hover:border-primary transition-colors font-mono text-[10px] uppercase tracking-[0.3em] text-text-primary">
               Load More
             </button>
           </div>

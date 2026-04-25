@@ -1,125 +1,126 @@
 {
   "nav": {
     "shop": "Shop",
-    "categories": "Categories",
+    "categories": "Collections",
     "journal": "Journal",
     "about": "About",
     "signIn": "Sign In"
   },
   "hero": {
-    "badge": "Intelligence Layer Active",
-    "title1": "The Future",
-    "title2": "of",
-    "title3": "Commerce",
-    "title4": "is Personal.",
-    "subtitle": "NexusAI reads real-time behavioral signals to craft an editorial shopping experience — unique to every visitor, every session.",
+    "badge": "Collection 01",
+    "title1": "Crafting Silence.",
+    "title2": "Engineering Focus.",
+    "title3": "",
+    "title4": "",
+    "subtitle": "Engineered for focus. Designed for silence. A curated collection of high-end tech gear for the professional environment.",
     "cta": "Explore Collection",
-    "watchStory": "Watch Story"
+    "watchStory": "The Process",
+    "sku": "SKU-094.02 // 10.7626° N, 106.6602° E"
   },
   "stats": {
-    "conversionLabel": "Conversion Uplift",
-    "conversionValue": "+34%",
-    "conversionSub": "vs traditional e-commerce",
-    "accuracyLabel": "Personalization Accuracy",
-    "accuracyValue": "97.2%",
-    "accuracySub": "behavioral match rate",
-    "sessionLabel": "Session Intelligence",
-    "sessionValue": "Real-time",
-    "sessionSub": "intent prediction engine"
+    "conversionLabel": "Craftsmanship",
+    "conversionValue": "Premium",
+    "conversionSub": "Grade-A Materials",
+    "accuracyLabel": "Engineering",
+    "accuracyValue": "Precision",
+    "accuracySub": "Micron-level accuracy",
+    "sessionLabel": "Experience",
+    "sessionValue": "Silent",
+    "sessionSub": "Zero distraction focus"
   },
   "brands": {
-    "trustedBy": "Trusted by forward-thinking brands"
+    "trustedBy": "Featured in the worlds most refined workspaces"
   },
   "carousel": {
-    "curatedForYou": "Curated for You",
-    "featuredDrops": "Featured Drops",
+    "curatedForYou": "Recommended for You",
+    "featuredDrops": "Featured Pieces",
     "viewAll": "View All",
     "viewAllProducts": "View All Products",
-    "previewSoon": "Preview Soon",
+    "previewSoon": "Coming Soon",
     "newArrival": "New Arrival"
   },
   "features": {
-    "badge": "How It Works",
-    "title": "Commerce that <1>understands</1> you.",
-    "subtitle": "Four pillars of intelligence working together to create an experience that feels less like shopping, more like discovery.",
-    "tracking": "Behavioral Tracking",
-    "trackingDesc": "Every scroll, hover, and click builds a living profile of intent — no surveys, no guessing.",
-    "trackingMetric": "150+ signals",
-    "personalization": "Real-time Personalization",
-    "personalizationDesc": "Product feeds, pricing, and recommendations adapt to your mood within the same session.",
-    "personalizationMetric": "<200ms latency",
-    "predictive": "Predictive Commerce",
-    "predictiveDesc": "AI anticipates what you need before you search. Surfacing the right product at the right moment.",
-    "predictiveMetric": "97% accuracy",
-    "checkout": "Frictionless Checkout",
-    "checkoutDesc": "One-tap purchase flow with AI-optimized cart suggestions and dynamic pricing strategies.",
-    "checkoutMetric": "3x conversion"
+    "badge": "The Zento Way",
+    "title": "Built for <1>performance</1>.",
+    "subtitle": "Three pillars of design focused on creating a workspace that empowers deep work and precision.",
+    "tracking": "Acoustic Engineering",
+    "trackingDesc": "Every switch and surface is tuned for a deep, satisfying thock. Zero rattle, zero distractions.",
+    "trackingMetric": "32dB Peak",
+    "personalization": "Industrial Design",
+    "personalizationDesc": "Anodized aluminum, premium PBT, and reinforced glass. Built to last a lifetime of focus.",
+    "personalizationMetric": "ISO 9001",
+    "predictive": "Ergonomic Focus",
+    "predictiveDesc": "Angles and curves designed to support your natural posture during extended sessions.",
+    "predictiveMetric": "Ortholinear",
+    "checkout": "Seamless Integration",
+    "checkoutDesc": "Universal compatibility across systems. One cable, infinite focus.",
+    "checkoutMetric": "Plug & Play"
   },
   "testimonials": {
-    "badge": "What They Say",
-    "title": "Trusted by <1>visionaries</1>.",
-    "quote1": "NexusAI understood my style before I did. The recommendations feel eerily accurate — in the best way.",
-    "author1": "Sarah Chen",
-    "role1": "Creative Director, Studio Mono",
-    "quote2": "We switched from a generic Shopify setup. 34% lift in conversion within the first month. No going back.",
-    "author2": "Marcus Rivera",
-    "role2": "Founder, Artifact Supply",
-    "quote3": "The behavioral engine surfaces products I didn't know I wanted. It's less shopping, more curating.",
-    "author3": "Yuki Tanaka",
-    "role3": "Product Manager, East Collective"
+    "badge": "The Collective",
+    "title": "Choice of <1>professionals</1>.",
+    "quote1": "Zento keyboards are the first tools that actually disappear while I work. The silence is profound.",
+    "author1": "James Wilson",
+    "role1": "Senior Software Architect",
+    "quote2": "The monitor bar changed how I see my desk. No glare, just perfect illumination on my work.",
+    "author2": "Elena Rossi",
+    "role2": "Principal Product Designer",
+    "quote3": "Minimalism that doesn't compromise on utility. Every piece feels intentional.",
+    "author3": "Kenji Sato",
+    "role3": "Executive Producer"
   },
   "cta": {
-    "title": "Start your <1>intelligent</1> commerce journey.",
-    "subtitle": "Join the next wave of brands using behavioral intelligence to create shopping experiences that feel alive.",
-    "exploreNow": "Explore Now",
-    "learnMore": "Learn More",
-    "stat1": "2,500+ Brands",
-    "stat2": "1M+ Users",
-    "stat3": "99.9% Uptime"
+    "title": "Refine your <1>workspace</1> today.",
+    "subtitle": "Join the collective of professionals who choose precision over noise.",
+    "exploreNow": "Shop Now",
+    "learnMore": "Our Philosophy",
+    "stat1": "Ships Worldwide",
+    "stat2": "2 Year Warranty",
+    "stat3": "24/7 Support"
   },
   "products": {
     "catalog": "Catalog",
-    "allProducts": "All Products",
+    "allProducts": "All Pieces",
     "collection": "Collection",
-    "catalogDescription": "Each product is curated through our behavioral intelligence engine, surfacing what matters most to you.",
-    "itemsFound": "items found",
-    "filterSystem": "Filter System",
-    "allArtifacts": "All Artifacts",
+    "catalogDescription": "Each piece is engineered for the modern professional workspace.",
+    "itemsFound": "pieces",
+    "filterSystem": "Filter",
+    "allArtifacts": "All",
     "loadMore": "Load More",
-    "noProducts": "No products found",
+    "noProducts": "No pieces found",
     "noProductsHint": "Try adjusting your filters or browse our full collection.",
-    "previewSoon": "Preview Soon",
-    "newArrival": "New Arrival"
+    "previewSoon": "Coming Soon",
+    "newArrival": "New"
   },
   "product": {
     "addToCart": "Add to Cart",
     "buyNow": "Buy Now",
-    "description": "Description",
-    "specifications": "Specifications",
-    "relatedProducts": "You May Also Like",
-    "aiPick": "AI Pick",
+    "description": "The Details",
+    "specifications": "Technical Specs",
+    "relatedProducts": "Recommended for You",
+    "aiPick": "Curated",
     "inStock": "In Stock",
     "lowStock": "Low Stock",
     "soldOut": "Sold Out",
     "sku": "SKU",
     "category": "Category",
     "quantity": "Quantity",
-    "essentialDrop": "Essential Drop",
-    "pickedForYou": "Picked for you",
-    "backToShop": "Back to Shop",
+    "essentialDrop": "Essential Piece",
+    "pickedForYou": "Recommended",
+    "backToShop": "Back to Collections",
     "share": "Share",
     "wishlist": "Add to Wishlist",
     "imagePending": "Image Pending",
     "imageProduction": "Visual artifact in production"
   },
   "footer": {
-    "brand": "Behavioral Commerce Intelligence. Powered by real-time AI personalization that learns from every interaction.",
+    "brand": "Precision Workspace Gear. Engineered for focus, designed for silence.",
     "navigation": "Navigation",
-    "company": "Company",
-    "system": "System",
-    "allSystems": "All Systems Operational",
+    "company": "Zento",
+    "system": "Status",
+    "allSystems": "Shipping Worldwide",
     "newArrivals": "New Arrivals",
-    "aiPicks": "AI Picks",
+    "aiPicks": "Curated",
     "careers": "Careers",
     "contact": "Contact",
     "privacy": "Privacy",
@@ -128,6 +129,60 @@
     "rights": "All rights reserved."
   },
   "common": {
-    "scroll": "Scroll"
+    "scroll": "Explore"
+  },
+  "home": {
+    "hero": {
+      "badge": "EDITION 01 / ORIGIN",
+      "headline": "The Art of Silence. The Science of Focus.",
+      "subtext": "We create instruments for the modern professional. Designed for the quiet pursuit of mastery.",
+      "industrialDetail": "BATCH_001 // CALIBRATED IN OSLO",
+      "ctaPrimary": "Explore the Edit",
+      "ctaSecondary": "Our Philosophy"
+    },
+    "currentEdit": {
+      "headline": "Your Aesthetic Signature",
+      "subtext": "Implicitly curated based on your interaction.",
+      "hint": "Adapting to your workflow vibe..."
+    },
+    "categories": {
+      "headline": "Collections",
+      "keyboard": "Precision typing instruments.",
+      "audio": "High-fidelity silence.",
+      "lighting": "Controlled illumination.",
+      "accessories": "Refined essentials."
+    },
+    "personaSwitcher": {
+      "headline": "Atmospheric Orchestration",
+      "copy": "Sync your workspace to your ritual.",
+      "minimalist": "The Minimalist",
+      "nightOwl": "The Night Owl",
+      "architect": "The Architect"
+    },
+    "systemFit": {
+      "headline": "Pre-configured Workspace Setups",
+      "description": "Our pieces are built to function as a singular environment. Integrated ecosystems for the modern professional.",
+      "tone": "Integrated performance."
+    },
+    "engineeredDetail": {
+      "headline": "The Logic of Design",
+      "actuation": "CALIBRATED ACTUATION: 45G",
+      "material": "CORE: ANODIZED ALUMINUM 6061",
+      "profile": "ACOUSTIC DAMPENING: DUAL-LAYER FOAM",
+      "connection": "SIGNAL: ULTRA-LOW LATENCY WIRELESS"
+    },
+    "ritualOfUse": {
+      "headline": "The Precision Ritual",
+      "tone": "Focus. Control. The calculated movement of the professional workflow. Every interaction is a calibrated act of intent."
+    },
+    "materialDepth": {
+      "headline": "Material Density",
+      "focus": "Structural integrity. Anodized metal, tempered glass, precision polymer. The industrial weight of high-grade components."
+    },
+    "transmissionFeed": {
+      "newDrop": "A workspace refined in Tokyo.",
+      "refining": "The Night Owl profile activated in New York.",
+      "location": "Collection 01 reaching absolute focus globally."
+    }
   }
 }
