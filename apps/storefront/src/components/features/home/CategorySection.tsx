@@ -26,7 +26,7 @@ export const CategorySection = ({ categories }: CategorySectionProps) => {
               03 — EXPLORE
             </span>
           </div>
-          <h2 className="font-serif text-5xl md:text-6xl font-bold text-text-primary tracking-tight">
+          <h2 className="font-display text-5xl md:text-6xl font-bold text-text-primary tracking-tight">
             {t('home.categories.headline')}
           </h2>
         </div>
@@ -71,7 +71,7 @@ export const CategorySection = ({ categories }: CategorySectionProps) => {
                   <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-text-tertiary mb-2">
                     {String(index + 1).padStart(2, '0')}
                   </p>
-                  <h3 className="font-serif text-2xl font-bold text-text-primary tracking-tight">
+                  <h3 className="font-display text-2xl font-bold text-text-primary tracking-tight">
                     {category.name}
                   </h3>
                   <p className="font-body text-[10px] text-text-secondary mt-1 max-w-[180px]">

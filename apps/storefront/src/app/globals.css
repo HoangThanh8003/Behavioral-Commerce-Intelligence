@@ -3,60 +3,55 @@
 @tailwind utilities;
 
 @layer base {
+  /* ── NexusAI × shadcn/ui — Emerald theme ── */
   :root {
-    /* ── NexusAI × shadcn/ui — Emerald theme ── */
-    --background: 140 21% 7%;      /* canvas  #0F1712 */
-    --foreground: 46 22% 88%;      /* text-primary #E8E4D8 */
-    
-    --card: 127 20% 11%;           /* surface #172318 */
-    --card-foreground: 46 22% 88%;
-    
-    --popover: 137 21% 15%;        /* overlay #1E2E22 */
-    --popover-foreground: 46 22% 88%;
-    
-    --primary: 145 64% 57%;        /* emerald #4CD98A */
-    --primary-hover: 145 74% 67%;
-    --primary-dim: 147 57% 42%;
-    --primary-deep: 151 59% 25%;
-    --primary-border: 145 29% 29%;
-    --primary-foreground: 140 44% 5%; /* on-emerald #0A1A0E */
-    
-    --secondary: 137 27% 15%;      /* border #2A4A36 */
-    --secondary-foreground: 120 22% 67%; /* text-secondary #9ABD9A */
-    
-    --text-secondary: 120 22% 67%;
-    --text-tertiary: 137 21% 51%;  /* #6A9A78 */
-    --text-disabled: 147 21% 29%;  /* #3A5A48 */
-
-    --muted: 137 21% 15%;
-    --muted-foreground: 137 21% 51%;
-    
-    --accent: 140 21% 12%;         /* emerald-muted */
-    --accent-foreground: 145 64% 57%;
-    
-    --destructive: 0 80% 72%;      /* danger #F08080 */
-    --destructive-muted: 0 39% 12%;
-    --destructive-text: 0 80% 72%;
-    --destructive-foreground: 46 22% 88%;
-    
-    --success: 145 64% 57%;
-    --success-muted: 140 21% 12%;
-    --success-text: 145 74% 67%;
-    
-    --warning: 42 78% 60%;         /* #E8B84A */
-    --warning-muted: 36 36% 10%;
-    --warning-text: 42 78% 60%;
-
-    --border: 140 21% 20%;
-    --input: 137 21% 15%;
-    --ring: 145 64% 57%;
-    --radius: 0.75rem;
+    --background:          15 23 18;       /* canvas  #0F1712 */
+    --foreground:          232 228 216;    /* text-primary #E8E4D8 */
+    --card:                23 35 24;       /* surface #172318 */
+    --card-foreground:     232 228 216;
+    --popover:             30 46 34;       /* overlay #1E2E22 */
+    --popover-foreground:  232 228 216;
+    --primary:             76 217 138;     /* emerald #4CD98A */
+    --primary-foreground:  10 26 14;       /* on-emerald #0A1A0E */
+    --secondary:           42 74 54;       /* border #2A4A36 */
+    --secondary-foreground: 154 189 154;
+    --muted:               30 46 34;
+    --muted-foreground:    106 154 120;    /* text-tertiary */
+    --accent:              26 46 34;       /* emerald-muted */
+    --accent-foreground:   76 217 138;
+    --destructive:         240 128 128;    /* danger #F08080 */
+    --destructive-foreground: 232 228 216;
+    --border:              42 74 54;
+    --input:               30 46 34;
+    --ring:                76 217 138;     /* focus ring = emerald */
+    --radius: 0.5rem;
   }
 
-  body {
+  /* Dashboard light mode (Storefront is dark-mode only) */
+  .light {
+    --background:          245 247 245;
+    --foreground:          26 46 30;
+    --card:                255 255 255;
+    --card-foreground:     26 46 30;
+    --popover:             255 255 255;
+    --popover-foreground:  26 46 30;
+    --primary:             46 170 101;
+    --primary-foreground:  255 255 255;
+    --secondary:           200 218 202;
+    --secondary-foreground: 58 106 72;
+    --muted:               240 244 241;
+    --muted-foreground:    90 138 104;
+    --border:              200 218 202;
+    --input:               200 218 202;
+  }
+
+  /* Font override */
+  body { 
+    font-family: var(--font-body), sans-serif; 
     @apply bg-canvas text-text-primary antialiased selection:bg-emerald/30;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
+  .font-sans { font-family: var(--font-body), sans-serif !important; }
 
   /* Grain Overlay */
   body::before {
@@ -69,104 +64,12 @@
     z-index: 50;
   }
 
-  /* ── Light Mode Overrides ── */
-  .light {
-    --background: 137 8% 96%;        /* #F5F7F5 */
-    --foreground: 140 22% 16%;       /* #1A2E1E */
-
-    --card: 0 0% 100%;               /* #FFFFFF */
-    --card-foreground: 140 22% 16%;
-
-    --popover: 137 14% 95%;          /* #F0F4F1 */
-    --popover-foreground: 140 22% 16%;
-
-    --primary: 147 57% 42%;          /* #2EAA65 */
-    --primary-hover: 147 57% 36%;
-    --primary-dim: 147 57% 30%;
-    --primary-deep: 151 59% 20%;
-    --primary-border: 135 25% 72%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 135 16% 82%;        /* #C8DACA */
-    --secondary-foreground: 140 30% 32%;
-
-    --text-secondary: 140 30% 32%;   /* #3A6A48 */
-    --text-tertiary: 137 25% 47%;    /* #5A8A68 */
-    --text-disabled: 135 16% 72%;
-
-    --muted: 137 14% 95%;
-    --muted-foreground: 137 25% 47%;
-
-    --accent: 137 30% 92%;
-    --accent-foreground: 147 57% 35%;
-
-    --destructive: 0 70% 55%;
-    --destructive-muted: 0 30% 95%;
-    --destructive-text: 0 70% 45%;
-    --destructive-foreground: 0 0% 100%;
-
-    --success: 147 57% 42%;
-    --success-muted: 137 30% 92%;
-    --success-text: 147 57% 32%;
-
-    --warning: 42 78% 50%;
-    --warning-muted: 42 40% 94%;
-    --warning-text: 42 78% 38%;
-
-    --border: 135 16% 82%;
-    --input: 135 16% 88%;
-    --ring: 147 57% 42%;
-  }
-
   .light body::before {
     opacity: 0;
   }
 
   .light body {
     @apply selection:bg-emerald/20;
-  }
-
-  /* ── Persona Themes (Transition handled via CSS classes on body) ── */
-  html {
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
-
-  /* The Architect Theme (Titan Gray / Industrial Blue) */
-  .theme-architect {
-    --background: 215 28% 7%;      /* #0D1117 */
-    --card: 215 22% 10%;           /* #161B22 */
-    --popover: 215 22% 10%;
-    --primary: 212 100% 66%;       /* #58A6FF */
-    --primary-foreground: 215 28% 7%;
-    --text-secondary: 215 14% 65%;
-    --text-tertiary: 215 14% 45%;
-    --border: 215 22% 18%;
-    --ring: 212 100% 66%;
-  }
-  .theme-architect body {
-    @apply selection:bg-[#58A6FF]/30;
-  }
-
-  /* The Minimalist Theme (Absolute Black / Pure White) */
-  .theme-minimalist {
-    --background: 0 0% 2%;         /* #050505 */
-    --card: 0 0% 5%;               /* #0D0D0D */
-    --primary: 0 0% 90%;           /* #E5E5E5 */
-    --primary-foreground: 0 0% 0%;
-    --text-secondary: 0 0% 60%;
-    --border: 0 0% 12%;
-    --ring: 0 0% 90%;
-  }
-
-  /* The Night Owl Theme (Deep Emerald) */
-  .theme-nightowl {
-    --background: 140 30% 3%;      /* #030603 */
-    --card: 140 25% 6%;           /* #081008 */
-    --primary: 160 84% 39%;        /* #10b981 */
-    --primary-foreground: 140 30% 3%;
-    --text-secondary: 140 15% 60%;
-    --border: 140 25% 15%;
-    --ring: 160 84% 39%;
   }
 }
 

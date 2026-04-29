@@ -3,13 +3,22 @@ import { PrismaClient, UserRole, InventoryAction } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🚀 Seeding ZENTO database...');
+  console.log('🚀 Đang khởi tạo dữ liệu mẫu ZENTO...');
+
+  console.log('🧹 Đang dọn dẹp dữ liệu cũ (Xóa Order, Inventory, Product, Category)...');
+  await prisma.orderItem.deleteMany({});
+  await prisma.order.deleteMany({});
+  await prisma.inventoryLog.deleteMany({});
+  await prisma.inventory.deleteMany({});
+  await prisma.product.deleteMany({});
+  await prisma.category.deleteMany({});
+  console.log('✅ Đã xóa dữ liệu cũ.');
 
   // --- 1. Users ---
   const users = [
     {
       email: 'admin@zento.store',
-      name: 'ZENTO Admin',
+      name: 'Quản trị viên ZENTO',
       passwordHash: 'hashed_password_123', // Demo only
       role: UserRole.ADMIN,
     },
@@ -21,7 +30,7 @@ async function main() {
     },
     {
       email: 'customer@test.com',
-      name: 'Alex Morgan',
+      name: 'Khách hàng Demo',
       passwordHash: 'hashed_password_123',
       role: UserRole.CUSTOMER,
     },
@@ -34,35 +43,35 @@ async function main() {
       create: u,
     });
   }
-  console.log('✅ Users seeded.');
+  console.log('✅ Đã tạo dữ liệu người dùng.');
 
   // --- 2. Categories ---
   const categoriesData = [
     {
-      name: 'Mechanical Keyboards',
+      name: 'Bàn phím cơ',
       slug: 'mechanical-keyboards',
-      description: 'Premium mechanical keyboards for professionals and enthusiasts.',
+      description: 'Bàn phím cơ cao cấp dành cho chuyên gia và người đam mê sự hoàn hảo.',
       imageUrl: 'https://images.pexels.com/photos/1772123/pexels-photo-1772123.jpeg?auto=compress&cs=tinysrgb&w=800',
       sortOrder: 1,
     },
     {
-      name: 'Audio',
+      name: 'Âm thanh',
       slug: 'audio',
-      description: 'Studio-grade headphones, speakers, and audio accessories.',
+      description: 'Tai nghe chuẩn studio, loa và các phụ kiện âm thanh chuyên nghiệp.',
       imageUrl: 'https://images.pexels.com/photos/3394666/pexels-photo-3394666.jpeg?auto=compress&cs=tinysrgb&w=800',
       sortOrder: 2,
     },
     {
-      name: 'Lighting',
+      name: 'Chiếu sáng',
       slug: 'lighting',
-      description: 'Precision desk and monitor lighting for focused work.',
+      description: 'Đèn bàn và đèn màn hình tối ưu cho không gian làm việc tập trung.',
       imageUrl: 'https://images.pexels.com/photos/10368532/pexels-photo-10368532.jpeg?auto=compress&cs=tinysrgb&w=800',
       sortOrder: 3,
     },
     {
-      name: 'Workspace Accessories',
+      name: 'Phụ kiện không gian làm việc',
       slug: 'workspace-accessories',
-      description: 'Industrial workspace components for precision environments.',
+      description: 'Các phụ kiện thiết yếu giúp tối ưu hóa không gian làm việc công thái học.',
       imageUrl: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
       sortOrder: 4,
     },
@@ -76,224 +85,224 @@ async function main() {
       create: c,
     });
   }
-  console.log('✅ Categories seeded.');
+  console.log('✅ Đã tạo dữ liệu danh mục.');
 
   // --- 3. Products (30 Total) ---
   const productsData = [
     // ── Mechanical Keyboards (8) ──────────────────────────
     {
-      name: 'KX-75 Silent',
+      name: 'Bàn phím KX-75 Silent',
       slug: 'kx-75-silent',
-      description: 'A 75% layout mechanical keyboard with silent linear switches, hot-swappable PCB, and machined aluminum frame. Designed for writers and late-night coders who need zero noise without sacrificing tactile precision.',
+      description: 'Bàn phím cơ layout 75% với switch tuyến tính siêu êm, mạch hotswap, và khung nhôm đúc nguyên khối. Thiết kế dành cho lập trình viên làm việc đêm cần sự yên tĩnh tuyệt đối.',
       price: 189.00, comparePrice: 219.00, sku: 'ZN-KB-001', categorySlug: 'mechanical-keyboards',
       imageUrls: ['https://images.pexels.com/photos/1772123/pexels-photo-1772123.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 45,
     },
     {
-      name: 'Mono65 Wireless',
+      name: 'Bàn phím Mono65 Không Dây',
       slug: 'mono65-wireless',
-      description: 'Compact 65% wireless mechanical keyboard with Bluetooth 5.1 and USB-C. Gateron Brown switches, PBT double-shot keycaps, and a minimal dark-mode aesthetic.',
+      description: 'Bàn phím không dây layout 65% nhỏ gọn hỗ trợ Bluetooth 5.1 và USB-C. Trang bị Gateron Brown switch, keycap PBT double-shot với thiết kế phong cách tối giản.',
       price: 149.00, comparePrice: null, sku: 'ZN-KB-002', categorySlug: 'mechanical-keyboards',
       imageUrls: ['https://images.pexels.com/photos/4005569/pexels-photo-4005569.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 80,
     },
     {
-      name: 'Apex TKL Pro',
+      name: 'Bàn phím Apex TKL Pro',
       slug: 'apex-tkl-pro',
-      description: 'Tenkeyless form factor with Cherry MX Red switches, per-key RGB, and a detachable wrist rest. CNC aluminum top plate with sound-dampening foam layers for a deep, satisfying thock.',
+      description: 'Layout Tenkeyless với Cherry MX Red switch, LED RGB từng phím và kê tay nam châm tháo rời. Plate nhôm CNC với nhiều lớp foam tiêu âm mang lại âm thanh trầm ấm (thock).',
       price: 259.00, comparePrice: 299.00, sku: 'ZN-KB-003', categorySlug: 'mechanical-keyboards',
       imageUrls: ['https://images.pexels.com/photos/3829227/pexels-photo-3829227.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 30,
     },
     {
-      name: 'Split Ergo 42',
+      name: 'Bàn phím Split Ergo 42',
       slug: 'split-ergo-42',
-      description: 'Ergonomic split keyboard with 42 keys, columnar stagger, and tented design. Kailh Choc low-profile switches. Programmable via QMK/VIA. Built for developers who value posture.',
+      description: 'Bàn phím công thái học tách đôi với 42 phím, bố cục dạng cột và độ nghiêng tùy chỉnh. Sử dụng switch low-profile Kailh Choc. Lập trình qua QMK/VIA. Dành cho người ưu tiên tư thế tự nhiên.',
       price: 329.00, comparePrice: null, sku: 'ZN-KB-004', categorySlug: 'mechanical-keyboards',
       imageUrls: ['https://images.pexels.com/photos/6804595/pexels-photo-6804595.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 15,
     },
     {
-      name: 'Noir 96 Custom',
+      name: 'Bàn phím Noir 96 Custom',
       slug: 'noir-96-custom',
-      description: 'Premium 96% layout keyboard with brass weight and gasket mount. Offers a full numpad while saving desk space. Pre-lubed linear switches for ultimate smooth typing.',
+      description: 'Bàn phím cao cấp layout 96% với tạ đồng và thiết kế gasket mount. Switch tuyến tính đã được lube sẵn cho cảm giác gõ mượt mà tối đa.',
       price: 349.00, comparePrice: 399.00, sku: 'ZN-KB-005', categorySlug: 'mechanical-keyboards',
       imageUrls: ['https://images.pexels.com/photos/8386361/pexels-photo-8386361.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 25,
     },
     {
-      name: 'Vanguard 60%',
+      name: 'Bàn phím Vanguard 60%',
       slug: 'vanguard-60',
-      description: 'Ultra-compact 60% layout for pure minimalists. Blank PBT keycaps and a heavy steel base. Perfect for clean desk setups where aesthetics matter as much as function.',
+      description: 'Layout 60% siêu nhỏ gọn dành cho người theo đuổi sự tối giản. Keycap PBT không in chữ và đế thép siêu nặng. Phù hợp cho không gian làm việc mang đậm tính thẩm mỹ.',
       price: 139.00, comparePrice: 159.00, sku: 'ZN-KB-006', categorySlug: 'mechanical-keyboards',
       imageUrls: ['https://images.pexels.com/photos/7915507/pexels-photo-7915507.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 60,
     },
     {
-      name: 'Forge Limited',
+      name: 'Bàn phím Forge Phiên bản Giới Hạn',
       slug: 'forge-limited',
-      description: 'Limited edition mechanical keyboard with a machined titanium chassis and carbon fiber top plate. Custom industrial tactile switches for a deliberate, high-feedback typing experience.',
+      description: 'Phiên bản giới hạn với khung titan gia công CNC và plate sợi carbon. Switch tactile công nghiệp tùy chỉnh cho trải nghiệm gõ mạnh mẽ, dứt khoát.',
       price: 450.00, comparePrice: null, sku: 'ZN-KB-007', categorySlug: 'mechanical-keyboards',
       imageUrls: ['https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 10,
     },
     {
-      name: 'Neon Grid 84',
+      name: 'Bàn phím Neon Grid 84',
       slug: 'neon-grid-84',
-      description: '84-key layout with translucent frosted acrylic case and intense underglow RGB. Comes with tactile Holy Panda switches.',
+      description: 'Layout 84 phím với vỏ acrylic nhám trong suốt và hệ thống LED gầm RGB nổi bật. Trang bị switch tactile Holy Panda huyền thoại.',
       price: 210.00, comparePrice: 240.00, sku: 'ZN-KB-008', categorySlug: 'mechanical-keyboards',
       imageUrls: ['https://images.pexels.com/photos/4005574/pexels-photo-4005574.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 40,
     },
 
     // ── Audio (8) ──────────────────────────────────────────
     {
-      name: 'Studio One Over-Ear',
+      name: 'Tai nghe Studio One Over-Ear',
       slug: 'studio-one-over-ear',
-      description: 'Closed-back reference headphones with 40mm beryllium drivers, memory foam ear cushions, and a flat frequency response tuned for mixing.',
+      description: 'Tai nghe kiểm âm dạng đóng (closed-back) với củ loa beryllium 40mm, đệm tai memory foam, mang lại dải âm thanh phẳng chuẩn xác cho việc mix nhạc.',
       price: 279.00, comparePrice: 329.00, sku: 'ZN-AU-001', categorySlug: 'audio',
       imageUrls: ['https://images.pexels.com/photos/3394666/pexels-photo-3394666.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 60,
     },
     {
-      name: 'Drift ANC Wireless',
+      name: 'Tai nghe Drift ANC Không Dây',
       slug: 'drift-anc-wireless',
-      description: 'Wireless over-ear headphones with adaptive noise cancellation, 38-hour battery life, and multipoint Bluetooth. Foldable design with a premium carrying case.',
+      description: 'Tai nghe không dây hỗ trợ chống ồn chủ động, thời lượng pin 38 giờ, Bluetooth đa điểm kết nối nhiều thiết bị. Thiết kế gập linh hoạt đi kèm hộp đựng cao cấp.',
       price: 199.00, comparePrice: null, sku: 'ZN-AU-002', categorySlug: 'audio',
       imageUrls: ['https://images.pexels.com/photos/610945/pexels-photo-610945.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 100,
     },
     {
-      name: 'Pulse Desktop Speaker',
+      name: 'Loa máy tính Pulse',
       slug: 'pulse-desktop-speaker',
-      description: 'Compact desktop speaker pair with USB-C DAC, 20W per channel, and passive radiators for deep bass in a small footprint. Matte black aluminum enclosure.',
+      description: 'Loa máy tính nhỏ gọn với DAC USB-C, 20W mỗi kênh và màng cộng hưởng thụ động mang lại âm bass sâu. Vỏ nhôm đen nhám đầy uy lực.',
       price: 169.00, comparePrice: null, sku: 'ZN-AU-003', categorySlug: 'audio',
       imageUrls: ['https://images.pexels.com/photos/10298064/pexels-photo-10298064.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 40,
     },
     {
-      name: 'Omni Pod Microphone',
+      name: 'Micro thu âm Omni Pod',
       slug: 'omni-pod-mic',
-      description: 'USB-C condenser microphone designed for podcasters and streamers. Features a built-in pop filter, shock mount, and zero-latency monitoring. Matte black finish.',
+      description: 'Micro condenser cắm cổng USB-C hoàn hảo cho podcaster và streamer. Tích hợp màng lọc pop-filter, ngàm chống sốc và hỗ trợ kiểm âm độ trễ bằng 0.',
       price: 129.00, comparePrice: 149.00, sku: 'ZN-AU-004', categorySlug: 'audio',
-      imageUrls: ['https://images.pexels.com/photos/159613/microphone-audio-computer-music-159613.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 80,
+      imageUrls: ['https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 80, // Sửa 404
     },
     {
-      name: 'Aura Wireless Earbuds',
+      name: 'Tai nghe không dây Aura Earbuds',
       slug: 'aura-wireless-earbuds',
-      description: 'True wireless earbuds with active noise cancellation, transparency mode, and a wireless charging case. IPX4 water resistance.',
+      description: 'Tai nghe in-ear không dây (TWS) với công nghệ chống ồn chủ động, chế độ xuyên âm và hộp sạc chuẩn Qi. Đạt chuẩn kháng nước IPX4.',
       price: 149.00, comparePrice: null, sku: 'ZN-AU-005', categorySlug: 'audio',
       imageUrls: ['https://images.pexels.com/photos/374148/pexels-photo-374148.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 150,
     },
     {
-      name: 'Resonance Soundbar',
+      name: 'Loa Resonance Soundbar',
       slug: 'resonance-soundbar',
-      description: 'Sleek under-monitor soundbar with Dolby Atmos support, Bluetooth 5.2, and an integrated subwoofer. Perfect for cinematic desktop setups.',
+      description: 'Loa soundbar đặt dưới màn hình siêu mượt với chuẩn âm thanh vòm Dolby Atmos, Bluetooth 5.2 và loa siêu trầm gắn liền. Trải nghiệm điện ảnh ngay trên bàn làm việc.',
       price: 299.00, comparePrice: 349.00, sku: 'ZN-AU-006', categorySlug: 'audio',
       imageUrls: ['https://images.pexels.com/photos/3587478/pexels-photo-3587478.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 25,
     },
     {
-      name: 'Vocal Dynamic Mic',
+      name: 'Micro thu âm Vocal Dynamic',
       slug: 'vocal-dynamic-mic',
-      description: 'Professional XLR dynamic microphone with excellent off-axis rejection. Ideal for voiceovers and streaming in untreated rooms.',
+      description: 'Micro XLR Dynamic chuẩn phòng thu với độ nhạy cao và lọc tiếng ồn cực tốt. Tuyệt vời cho công việc thu âm chuyên nghiệp trong không gian nhiều tiếng ồn.',
       price: 249.00, comparePrice: null, sku: 'ZN-AU-007', categorySlug: 'audio',
       imageUrls: ['https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 35,
     },
     {
-      name: 'Echo Studio DAC',
+      name: 'Bộ xử lý âm thanh Echo Studio DAC',
       slug: 'echo-studio-dac',
-      description: 'High-resolution digital-to-analog converter and headphone amplifier. Drives high-impedance audiophile headphones effortlessly.',
+      description: 'Bộ giải mã âm thanh độ phân giải cao kết hợp amplifier cho tai nghe. Đẩy mạnh công suất để phối ghép với những mẫu tai nghe audiophile trở kháng cao.',
       price: 199.00, comparePrice: 229.00, sku: 'ZN-AU-008', categorySlug: 'audio',
       imageUrls: ['https://images.pexels.com/photos/373945/pexels-photo-373945.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 50,
     },
 
     // ── Lighting (6) ───────────────────────────────────────
     {
-      name: 'Arc Monitor Light Bar',
+      name: 'Đèn màn hình Arc Light Bar',
       slug: 'arc-monitor-light-bar',
-      description: 'Asymmetric monitor light bar with adjustable color temperature (2700K–6500K) and brightness. Zero screen glare, USB-C powered.',
+      description: 'Đèn treo màn hình với thiết kế chiếu sáng bất đối xứng, chỉnh nhiệt độ màu (2700K–6500K) tự do. Hạn chế hiện tượng lóa màn hình, cấp nguồn trực tiếp qua USB-C.',
       price: 79.00, comparePrice: 99.00, sku: 'ZN-LT-001', categorySlug: 'lighting',
       imageUrls: ['https://images.pexels.com/photos/10368532/pexels-photo-10368532.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 120,
     },
     {
-      name: 'Halo Desk Lamp',
+      name: 'Đèn bàn làm việc Halo',
       slug: 'halo-desk-lamp',
-      description: 'Articulated desk lamp with edge-lit LED panel, 800 lux at desk level, and a weighted metal base. CRI 95+ for accurate color rendering.',
+      description: 'Đèn bàn gấp khúc linh hoạt sử dụng tấm nền LED viền cường độ 800 lux, chân đế kim loại vững chắc. Độ hoàn màu chuẩn xác với CRI > 95.',
       price: 129.00, comparePrice: null, sku: 'ZN-LT-002', categorySlug: 'lighting',
       imageUrls: ['https://images.pexels.com/photos/11105953/pexels-photo-11105953.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 55,
     },
     {
-      name: 'Ambient Strip Kit',
+      name: 'Bộ LED viền Ambient Strip',
       slug: 'ambient-strip-kit',
-      description: 'Addressable LED strip kit with 2 meters of warm-to-cool tunable light. Adhesive-backed for monitor or desk edge mounting.',
+      description: 'Dải LED viền dài 2 mét có khả năng đồng bộ màu sắc. Có sẵn băng keo chuyên dụng để dán mặt sau màn hình, hộc bàn tạo điểm nhấn không gian ảo diệu.',
       price: 49.00, comparePrice: null, sku: 'ZN-LT-003', categorySlug: 'lighting',
       imageUrls: ['https://images.pexels.com/photos/10041258/pexels-photo-10041258.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 200,
     },
     {
-      name: 'Lumina Ring Light',
+      name: 'Đèn quay phim Lumina Ring Light',
       slug: 'lumina-ring-light',
-      description: '10-inch ring light for video calls and streaming. Features edge-lit technology for soft, flattering illumination without blinding the user.',
+      description: 'Đèn vòng 10-inch chuyên biệt cho video call và livestream. Ứng dụng công nghệ chiếu sáng bao quanh giúp khuôn mặt bừng sáng tự nhiên mà không gây chói mắt.',
       price: 89.00, comparePrice: 110.00, sku: 'ZN-LT-004', categorySlug: 'lighting',
-      imageUrls: ['https://images.pexels.com/photos/3095328/pexels-photo-3095328.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 80,
+      imageUrls: ['https://images.pexels.com/photos/317355/pexels-photo-317355.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 80, // Sửa 404
     },
     {
-      name: 'Prism Corner Lamp',
+      name: 'Đèn cột góc tường Prism Corner',
       slug: 'prism-corner-lamp',
-      description: 'Minimalist RGB corner floor lamp. Connects via Wi-Fi and supports millions of colors. Perfect for setting a moody studio atmosphere.',
+      description: 'Cây đèn chiếu góc tường RGB thanh lịch. Hỗ trợ hàng triệu dải màu và điều khiển qua Wi-Fi, kiến tạo hoàn hảo không gian Studio ngập tràn cảm hứng sáng tạo.',
       price: 149.00, comparePrice: 179.00, sku: 'ZN-LT-005', categorySlug: 'lighting',
       imageUrls: ['https://images.pexels.com/photos/317355/pexels-photo-317355.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 45,
     },
     {
-      name: 'Glow Key Light',
+      name: 'Đèn mặt đa góc Glow Key Light',
       slug: 'glow-key-light',
-      description: 'Professional LED key light for desktop streaming. Fully adjustable via desktop app. Clamp mount saves desk space.',
+      description: 'Đèn chiếu thẳng Key Light chuyên dụng cho livestreaming. Thay đổi dễ dàng qua phần mềm máy tính. Trang bị sẵn chân kẹp mép bàn gọn gàng tối ưu diện tích.',
       price: 199.00, comparePrice: null, sku: 'ZN-LT-006', categorySlug: 'lighting',
       imageUrls: ['https://images.pexels.com/photos/1249911/pexels-photo-1249911.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 30,
     },
 
     // ── Workspace Accessories (8) ──────────────────────────
     {
-      name: 'Control Surface',
+      name: 'Thảm trải bàn Control Surface',
       slug: 'control-surface',
-      description: 'Full-size workspace surface engineered from high-density precision polymer. Machined mesh texture provides pixel-perfect tracking with zero drag. Non-slip industrial base.',
+      description: 'Thảm lót kín khu vực làm việc làm từ polymer đa mật độ. Bề mặt lưới micro tối ưu hóa độ chính xác của chuột vi tính. Lớp đế nhám chống trượt cực kỳ bền bỉ.',
       price: 59.00, comparePrice: null, sku: 'ZN-WA-001', categorySlug: 'workspace-accessories',
       imageUrls: ['https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 150,
     },
     {
-      name: 'Orbit Wrist Rest',
+      name: 'Kê tay đệm êm Orbit Wrist Rest',
       slug: 'orbit-wrist-rest',
-      description: 'Ergonomic wrist rest with slow-rebound memory foam core and a cool-touch fabric cover. Designed to pair with 65–75% keyboards.',
+      description: 'Kê tay bảo vệ sức khỏe với lõi bọt xốp memory foam đàn hồi chậm và lớp vỏ vải thoáng khí mát lạnh. Rất vừa vặn với các dòng bàn phím kích cỡ 65-75%.',
       price: 39.00, comparePrice: null, sku: 'ZN-WA-002', categorySlug: 'workspace-accessories',
       imageUrls: ['https://images.pexels.com/photos/7412076/pexels-photo-7412076.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 90,
     },
     {
-      name: 'Cable Dock Mini',
+      name: 'Dock gài cáp Cable Dock Mini',
       slug: 'cable-dock-mini',
-      description: 'Weighted aluminum cable management dock with three magnetic slots. Keeps USB-C, Lightning, and headphone cables organized and within reach.',
+      description: 'Bộ giữ cáp bằng nhôm trọng lượng nặng trang bị 3 khe từ tính nam châm. Cố định ngăn nắp tất cả các dây cáp USB-C, cáp Lightning và dây nguồn của bạn.',
       price: 35.00, comparePrice: null, sku: 'ZN-WA-003', categorySlug: 'workspace-accessories',
       imageUrls: ['https://images.pexels.com/photos/4219864/pexels-photo-4219864.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 200,
     },
     {
-      name: 'Slate Laptop Stand',
+      name: 'Giá đỡ laptop Slate Stand',
       slug: 'slate-laptop-stand',
-      description: 'Minimalist laptop stand machined from a single block of aluminum. Elevates your screen to eye level to reduce neck strain. Ventilated base for airflow.',
+      description: 'Giá để laptop bằng hợp kim nhôm nguyên khối. Đưa màn hình lên cao ngang tầm nhìn để chống mỏi cổ và tăng cường lượng không khí tản nhiệt.',
       price: 89.00, comparePrice: 109.00, sku: 'ZN-WA-004', categorySlug: 'workspace-accessories',
       imageUrls: ['https://images.pexels.com/photos/5082576/pexels-photo-5082576.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 70,
     },
     {
-      name: 'Zenith USB-C Hub',
+      name: 'Cổng đa năng Zenith USB-C Hub',
       slug: 'zenith-usb-c-hub',
-      description: '7-in-1 USB-C hub with HDMI 4K@60Hz, 100W PD passthrough, SD/microSD slots, USB-A 3.0, and gigabit Ethernet. Aluminum unibody with braided cable.',
+      description: 'Bộ hub chia cổng USB-C 7 trong 1: HDMI 4K/60Hz, sạc truyền qua PD 100W, đầu đọc thẻ SD/microSD, USB-A 3.0 và cổng mạng dây RJ45. Vỏ nhôm nguyên khối đầm chắc.',
       price: 69.00, comparePrice: null, sku: 'ZN-WA-005', categorySlug: 'workspace-accessories',
       imageUrls: ['https://images.pexels.com/photos/3315369/pexels-photo-3315369.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 85,
     },
     {
-      name: 'Ergo Flow Mouse',
+      name: 'Chuột thông minh Ergo Flow Mouse',
       slug: 'ergo-flow-mouse',
-      description: 'Ergonomic vertical mouse designed to reduce wrist strain. Wireless multi-device connectivity, hyper-fast scroll wheel, and tactile side buttons.',
+      description: 'Chuột đứng công thái học làm giảm hiện tượng đau cổ tay. Hỗ trợ đa kết nối không dây, bánh xe cuộn cực nhạy và loạt phím bấm phụ bố trí dọc hông.',
       price: 99.00, comparePrice: 119.00, sku: 'ZN-WA-006', categorySlug: 'workspace-accessories',
       imageUrls: ['https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 120,
     },
     {
-      name: 'Precision Mousepad',
+      name: 'Bàn di chuột Precision Mousepad',
       slug: 'precision-mousepad',
-      description: 'Hard surface gaming-grade mousepad optimized for ultra-low friction tracking. Features a non-slip rubberized base and stitched anti-fray edges.',
+      description: 'Bề mặt di chuột cứng chuyên nghiệp được tôi luyện tối đa hóa tốc độ phản hồi. Lớp đáy cao su siêu bám và các đường chỉ viền khâu thủ công tinh tế.',
       price: 29.00, comparePrice: null, sku: 'ZN-WA-007', categorySlug: 'workspace-accessories',
       imageUrls: ['https://images.pexels.com/photos/3937174/pexels-photo-3937174.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 300,
     },
     {
-      name: 'Grid Riser',
+      name: 'Kệ kê màn hình Grid Riser',
       slug: 'grid-riser',
-      description: 'Aerospace-grade aluminum desk riser with a tempered glass surface. Integrated cable management routing. Built to support heavy workstation loads in focused environments.',
+      description: 'Chân kê màn hình máy tính cấu tạo từ chất liệu nhôm chế tạo vỏ máy bay kết hợp mặt kính trong suốt cường lực. Ẩn dây thông minh. Chịu được tải trọng siêu nặng.',
       price: 189.00, comparePrice: 220.00, sku: 'ZN-WA-008', categorySlug: 'workspace-accessories',
       imageUrls: ['https://images.pexels.com/photos/5082571/pexels-photo-5082571.jpeg?auto=compress&cs=tinysrgb&w=1000'], stock: 40,
     },
@@ -338,11 +347,11 @@ async function main() {
         inventoryId: inventory.id,
         action: InventoryAction.RESTOCK,
         quantity: p.stock,
-        note: 'Initial stock — ZENTO seed',
+        note: 'Dữ liệu tồn kho khởi tạo — ZENTO',
       },
     });
   }
-  console.log('✅ Products & inventory seeded.');
+  console.log('✅ Đã tạo dữ liệu sản phẩm và kho hàng.');
 
   // --- 4. Sample Order ---
   const customer = await prisma.user.findUnique({ where: { email: 'hoangthanh@gmail.com' } });
@@ -372,9 +381,9 @@ async function main() {
       },
     });
   }
-  console.log('✅ Sample order seeded.');
+  console.log('✅ Đã tạo đơn hàng mẫu.');
 
-  console.log('🌿 ZENTO seed complete!');
+  console.log('🌿 Hoàn tất nạp dữ liệu (seed) cho ZENTO!');
 }
 
 main()

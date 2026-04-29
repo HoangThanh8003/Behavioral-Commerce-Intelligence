@@ -44,7 +44,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-text-primary leading-[1.1] tracking-tighter"
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-text-primary leading-[1.1] tracking-tighter"
           >
             High-End Tech & <br />
             <span className="text-emerald italic">Workspace Gear.</span>

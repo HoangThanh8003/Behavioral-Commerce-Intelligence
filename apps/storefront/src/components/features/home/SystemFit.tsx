@@ -30,7 +30,7 @@ export const SystemFit = () => {
         <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
           <div className="space-y-4">
              <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-primary">Engineered Ecosystems</span>
-             <h2 className="font-serif text-5xl md:text-6xl font-bold text-text-primary tracking-tight">
+             <h2 className="font-display text-5xl md:text-6xl font-bold text-text-primary tracking-tight">
                 ZENTO <br /> <span className="italic text-text-secondary">Bundles.</span>
              </h2>
           </div>
@@ -49,7 +49,7 @@ export const SystemFit = () => {
                
                <div className="space-y-10 relative z-10">
                   <div className="space-y-2">
-                    <h3 className="font-serif text-3xl text-text-primary">{setup.label}</h3>
+                    <h3 className="font-display text-3xl text-text-primary">{setup.label}</h3>
                     <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-primary">High-Performance Synergy</p>
                   </div>
 

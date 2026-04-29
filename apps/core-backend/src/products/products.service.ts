@@ -30,6 +30,22 @@ export class ProductsService {
     return product;
   }
 
+  async findBySlug(slug: string) {
+    const product = await this.repository.findBySlug(slug);
+    if (!product) throw new NotFoundException('Product not found');
+    return product;
+  }
+
+  async findRelated(id: string) {
+    const product = await this.repository.findById(id);
+    if (!product) throw new NotFoundException('Product not found');
+    return this.repository.findRelated(id, product.categoryId);
+  }
+
+  async search(query: string) {
+    return this.repository.search(query);
+  }
+
   async update(id: string, dto: UpdateProductDto) {
     await this.findOne(id);
     return this.repository.update(id, dto);

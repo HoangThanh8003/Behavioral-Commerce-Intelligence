@@ -45,7 +45,7 @@ export const PersonaSwitcher = () => {
             <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-primary">
               Atmospheric Orchestration
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-text-primary tracking-tight">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary tracking-tight">
               Select Your Environment
             </h2>
           </div>
@@ -72,7 +72,7 @@ export const PersonaSwitcher = () => {
                   0{index + 1}
                 </span>
                 <div className="space-y-1">
-                  <h3 className={`font-serif text-2xl transition-colors ${
+                  <h3 className={`font-display text-2xl transition-colors ${
                     activePersona === persona.id ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'
                   }`}>
                     {persona.label}

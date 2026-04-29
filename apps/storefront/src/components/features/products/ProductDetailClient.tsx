@@ -78,7 +78,7 @@ export const ProductDetailClient = ({ product }: ProductDetailClientProps) => {
             </div>
 
             <div className="flex gap-3">
-              <button className="flex-1 flex items-center justify-center gap-2.5 bg-emerald hover:bg-emerald-hover text-[#0A1A0E] font-body text-sm font-semibold px-6 h-12 rounded-lg transition-colors duration-150 active:scale-[0.98]">
+              <button className="flex-1 flex items-center justify-center gap-2.5 bg-emerald hover:bg-emerald-hover text-emerald-on-emerald font-body text-sm font-semibold px-6 h-12 rounded-lg transition-colors duration-150 active:scale-[0.98]">
                 <ShoppingCart size={18} strokeWidth={2} />
                 {t('product.addToCart')}
               </button>

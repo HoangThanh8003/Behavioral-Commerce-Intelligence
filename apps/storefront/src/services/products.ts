@@ -40,7 +40,7 @@ export async function getProducts(options?: {
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   try {
-    const response = await fetch(`${API_URL}/products/${slug}`, {
+    const response = await fetch(`${API_URL}/products/slug/${slug}`, {
       next: { revalidate: 60 },
     });
 
@@ -51,8 +51,8 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
     return await response.json();
   } catch (error) {
-    console.error('Backend connection failed:', error);
-    throw error;
+    console.error('Failed to fetch product by slug:', error);
+    return null;
   }
 }
 
@@ -98,12 +98,30 @@ export async function getRelatedProducts(productId: string): Promise<Product[]> 
     });
 
     if (!response.ok) {
-      throw new Error('Failed to fetch related products');
+      // If related endpoint fails, return empty array gracefully
+      return [];
     }
 
     return await response.json();
   } catch (error) {
-    console.error('Backend connection failed:', error);
-    throw error;
+    console.error('Failed to fetch related products:', error);
+    return [];
+  }
+}
+
+export async function searchProducts(query: string): Promise<Product[]> {
+  try {
+    const response = await fetch(`${API_URL}/products/search?q=${encodeURIComponent(query)}`, {
+      next: { revalidate: 30 },
+    });
+
+    if (!response.ok) {
+      throw new Error('Search failed');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Search failed:', error);
+    return [];
   }
 }

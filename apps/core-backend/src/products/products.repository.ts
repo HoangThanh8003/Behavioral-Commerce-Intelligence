@@ -32,6 +32,41 @@ export class ProductsRepository {
     });
   }
 
+  async findBySlug(slug: string) {
+    return this.prisma.product.findFirst({
+      where: { slug, deletedAt: null },
+      include: { category: true, inventory: true },
+    });
+  }
+
+  async findRelated(productId: string, categoryId: string | null, limit = 4) {
+    return this.prisma.product.findMany({
+      where: {
+        deletedAt: null,
+        id: { not: productId },
+        ...(categoryId ? { categoryId } : {}),
+      },
+      take: limit,
+      include: { category: true },
+      orderBy: { createdAt: 'desc' },
+    });
+  }
+
+  async search(query: string, limit = 10) {
+    return this.prisma.product.findMany({
+      where: {
+        deletedAt: null,
+        OR: [
+          { name: { contains: query, mode: 'insensitive' } },
+          { description: { contains: query, mode: 'insensitive' } },
+        ],
+      },
+      take: limit,
+      include: { category: true },
+      orderBy: { createdAt: 'desc' },
+    });
+  }
+
   async searchSimilar(vector: number[], limit = 5) {
     return this.prisma.$queryRaw`
       SELECT id, name, slug, price, "imageUrls"

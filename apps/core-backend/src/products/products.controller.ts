@@ -28,10 +28,29 @@ export class ProductsController {
     return this.productsService.findAll({ categoryId, page, limit });
   }
 
+  @Get('search')
+  @ApiOperation({ summary: 'Tìm kiếm sản phẩm' })
+  @ApiQuery({ name: 'q', required: true })
+  search(@Query('q') query: string) {
+    return this.productsService.search(query);
+  }
+
+  @Get('slug/:slug')
+  @ApiOperation({ summary: 'Chi tiết sản phẩm theo slug' })
+  findBySlug(@Param('slug') slug: string) {
+    return this.productsService.findBySlug(slug);
+  }
+
   @Get(':id')
-  @ApiOperation({ summary: 'Chi tiết sản phẩm' })
+  @ApiOperation({ summary: 'Chi tiết sản phẩm theo ID' })
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
+  }
+
+  @Get(':id/related')
+  @ApiOperation({ summary: 'Sản phẩm liên quan' })
+  findRelated(@Param('id') id: string) {
+    return this.productsService.findRelated(id);
   }
 
   @Patch(':id')

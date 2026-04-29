@@ -63,7 +63,7 @@ export const ProductCard = ({ product, isFeatured = false }: ProductCardProps) =
                   {product.category?.name || 'Limited'}
                 </span>
                 <h3 className={cn(
-                  "font-serif font-bold text-text-primary tracking-tight leading-none",
+                  "font-display font-bold text-text-primary tracking-tight leading-none",
                   isFeatured ? "text-4xl md:text-5xl lg:text-6xl" : "text-xl"
                 )}>
                   {product.name}

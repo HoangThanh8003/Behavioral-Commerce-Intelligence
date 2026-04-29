@@ -26,27 +26,27 @@ const STORAGE_KEY = 'nexusai-theme';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
 
   // Read persisted theme or system preference on mount
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
     if (stored && (stored === 'dark' || stored === 'light')) {
       setThemeState(stored);
-      applyTheme(stored);
     } else {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initial: Theme = prefersDark ? 'dark' : 'dark'; // default to dark for Techno-Noir
-      setThemeState(initial);
-      applyTheme(initial);
+      setThemeState(prefersDark ? 'dark' : 'light');
     }
-    setMounted(true);
   }, []);
 
   const applyTheme = (t: Theme) => {
     const html = document.documentElement;
-    html.classList.remove('dark', 'light');
-    html.classList.add(t);
+    if (t === 'dark') {
+      html.classList.add('dark');
+      html.classList.remove('light');
+    } else {
+      html.classList.remove('dark');
+      html.classList.add('light');
+    }
   };
 
   const setTheme = useCallback((t: Theme) => {
@@ -56,11 +56,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
   }, [theme, setTheme]);
-
-  // Prevent flash
-  if (!mounted) return null;
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>

@@ -38,7 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+
+      </head>
       <body className={`${dmSans.variable} ${cormorant.variable} ${jetbrainsMono.variable} font-body bg-canvas text-text-primary antialiased`}>
         <Providers>
           <div className="relative flex min-h-screen flex-col">

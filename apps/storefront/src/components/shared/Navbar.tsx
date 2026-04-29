@@ -1,15 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { Search, ShoppingCart, Sun, Moon, Globe, Menu, X } from 'lucide-react';
+import { Search, ShoppingCart, Globe, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '@/lib/theme-context';
 import { Logo } from '@/components/shared/Logo';
 
 export const Navbar = () => {
   const { t, i18n } = useTranslation();
-  const { theme, toggleTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -28,8 +26,7 @@ export const Navbar = () => {
   const navItems = [
     { key: 'shop', href: '/products' },
     { key: 'categories', href: '/categories' },
-    { key: 'journal', href: '/journal' },
-    { key: 'about', href: '/about' },
+    { key: 'about', href: '/philosophy' },
   ];
 
   return (
@@ -63,15 +60,6 @@ export const Navbar = () => {
           >
             <Globe size={14} strokeWidth={1.5} />
             <span className="font-mono text-[9px] font-medium uppercase">{isVi ? 'VI' : 'EN'}</span>
-          </button>
-
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="flex h-8 w-8 items-center justify-center rounded-md text-text-tertiary transition-colors hover:text-text-primary"
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {theme === 'dark' ? <Sun size={14} strokeWidth={1.5} /> : <Moon size={14} strokeWidth={1.5} />}
           </button>
 
           {/* Search — Desktop only */}

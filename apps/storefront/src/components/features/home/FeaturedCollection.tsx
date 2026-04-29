@@ -18,17 +18,17 @@ export const FeaturedCollection = ({ products }: FeaturedCollectionProps) => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 border-b border-border/50 pb-8">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <div className="w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_rgba(var(--primary),0.5)]" />
-              <span className="font-mono text-[8px] uppercase tracking-[0.5em] text-primary">
-                Your Aesthetic Signature
+              <span className="w-2 h-2 rounded-full bg-emerald flex-shrink-0" />
+              <span className="font-body text-xs font-medium tracking-widest uppercase text-text-tertiary">
+                Featured
               </span>
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
               The Current Edit
             </h2>
           </div>
-          <p className="font-body text-xs text-text-secondary italic max-w-[280px] md:text-right leading-relaxed opacity-80">
-            Curated pieces that resonate with your industrial-minimalist profile.
+          <p className="font-body text-sm text-text-secondary max-w-[280px] md:text-right leading-relaxed">
+            Curated pieces picked for you.
           </p>
         </div>
 

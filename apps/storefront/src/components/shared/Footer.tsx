@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import { Logo } from '@/components/shared/Logo';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -12,22 +13,17 @@ export const Footer = () => {
         <div className="grid grid-cols-1 gap-16 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div className="space-y-5">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-sm bg-text-primary flex items-center justify-center">
-                <span className="font-serif font-bold text-canvas text-lg">Z</span>
-              </div>
-              <span className="font-serif text-2xl font-bold tracking-tight text-text-primary">
-                ZENTO
-              </span>
+            <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
+              <Logo />
             </Link>
             <p className="font-body text-sm leading-relaxed text-text-secondary max-w-xs">
               {t('footer.brand')}
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Shop */}
           <div className="space-y-5">
-            <h4 className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-text-tertiary">
+            <h4 className="font-body text-xs font-medium tracking-widest uppercase text-text-tertiary">
               {t('footer.navigation')}
             </h4>
             <ul className="space-y-3">
@@ -48,14 +44,12 @@ export const Footer = () => {
 
           {/* Company */}
           <div className="space-y-5">
-            <h4 className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-text-tertiary">
+            <h4 className="font-body text-xs font-medium tracking-widest uppercase text-text-tertiary">
               {t('footer.company')}
             </h4>
             <ul className="space-y-3">
               {[
-                { key: 'nav.about', href: '/about' },
-                { key: 'nav.journal', href: '/journal' },
-                { key: 'footer.careers', href: '/careers' },
+                { key: 'nav.about', href: '/philosophy' },
                 { key: 'footer.contact', href: '/contact' },
               ].map((link) => (
                 <li key={link.key}>
@@ -67,20 +61,19 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* System */}
+          {/* Info */}
           <div className="space-y-5">
-            <h4 className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-text-tertiary">
+            <h4 className="font-body text-xs font-medium tracking-widest uppercase text-text-tertiary">
               {t('footer.system')}
             </h4>
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-text-primary" />
-                <span className="font-mono text-[10px] text-text-primary tracking-widest">{t('footer.allSystems')}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald" />
+                <span className="font-body text-sm text-text-secondary">{t('footer.allSystems')}</span>
               </div>
-              <p className="font-mono text-[9px] text-text-tertiary leading-relaxed uppercase tracking-tighter">
-                Edition: Collection 01<br />
-                Origin: STUDIO_OSLO<br />
-                Availability: Global
+              <p className="font-body text-xs text-text-tertiary leading-relaxed">
+                Free worldwide shipping on orders over $200. 
+                2-year warranty on all products.
               </p>
             </div>
           </div>

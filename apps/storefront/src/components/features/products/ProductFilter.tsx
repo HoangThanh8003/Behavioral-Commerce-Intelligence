@@ -31,7 +31,7 @@ export const ProductFilter = ({ categories }: { categories: { id: string; name: 
           onClick={() => handleCategoryChange(null)}
           className={`px-5 py-2.5 rounded-full font-body text-xs font-medium transition-all duration-300 ${
             !currentCategory
-              ? 'bg-emerald text-[#0A1A0E] shadow-[0_0_15px_rgba(46,234,127,0.3)]'
+              ? 'bg-emerald text-emerald-on-emerald shadow-[0_0_15px_rgba(46,234,127,0.3)]'
               : 'bg-[#14221A]/80 border border-[#1D3325] backdrop-blur-md text-text-secondary hover:border-emerald/50 hover:text-emerald hover:bg-[#1A2C21]'
           }`}
         >
@@ -43,7 +43,7 @@ export const ProductFilter = ({ categories }: { categories: { id: string; name: 
             onClick={() => handleCategoryChange(cat.id)}
             className={`px-5 py-2.5 rounded-full font-body text-xs font-medium transition-all duration-300 ${
               currentCategory === cat.id
-                ? 'bg-emerald text-[#0A1A0E] shadow-[0_0_15px_rgba(46,234,127,0.3)]'
+                ? 'bg-emerald text-emerald-on-emerald shadow-[0_0_15px_rgba(46,234,127,0.3)]'
                 : 'bg-[#14221A]/80 border border-[#1D3325] backdrop-blur-md text-text-secondary hover:border-emerald/50 hover:text-emerald hover:bg-[#1A2C21]'
             }`}
           >

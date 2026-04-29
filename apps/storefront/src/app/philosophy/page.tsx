@@ -1,69 +1,110 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Philosophy | ZENTO',
-  description: 'The Art of Silence. The Science of Focus.',
+  title: 'About ZENTO | Our Philosophy',
+  description: 'The Art of Silence. The Science of Focus. Learn about ZENTO\'s commitment to precision workspace gear.',
 };
 
 export default function PhilosophyPage() {
   return (
-    <main className="bg-canvas min-h-screen pt-40 pb-24">
+    <main className="bg-canvas min-h-screen pt-32 pb-24">
       <div className="container mx-auto px-6 md:px-10">
-        <div className="max-w-4xl mx-auto space-y-32">
-          {/* Hero Section */}
-          <div className="space-y-12">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-text-tertiary">Our Origin</span>
-              </div>
-              <h1 className="font-serif text-6xl md:text-8xl font-bold text-text-primary tracking-tighter leading-[0.9]">
-                The Art of <span className="italic text-text-secondary">Silence.</span>
-              </h1>
+        <div className="max-w-3xl mx-auto space-y-24">
+          {/* Hero */}
+          <div className="space-y-8">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald flex-shrink-0" />
+              <span className="font-body text-xs font-medium tracking-widest uppercase text-text-tertiary">
+                About ZENTO
+              </span>
             </div>
-            <p className="font-serif text-2xl md:text-3xl text-text-secondary leading-relaxed italic font-light">
-              “In a world of noise, precision is the only luxury that matters.”
+            <h1 className="font-display text-5xl md:text-7xl font-bold text-text-primary tracking-tight leading-none">
+              The Art of Silence.
+            </h1>
+            <p className="font-display italic text-xl md:text-2xl text-text-secondary leading-relaxed font-normal">
+              In a world of noise, precision is the only luxury that matters.
             </p>
           </div>
 
-          {/* Core Pillars */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
-            <div className="space-y-8">
-               <h2 className="font-serif text-4xl text-text-primary italic">Reductive Engineering</h2>
-               <p className="font-body text-lg text-text-secondary leading-relaxed">
-                 We eliminate everything that does not serve focus. Every curve, every material, and every sound profile is calculated to disappear into your workflow. 
-               </p>
-               <div className="h-px w-24 bg-primary/30" />
+          {/* Mission */}
+          <div className="space-y-6">
+            <h2 className="font-display text-3xl font-semibold text-text-primary tracking-tight">
+              Our Mission
+            </h2>
+            <p className="font-body text-base text-text-secondary leading-relaxed max-w-prose">
+              ZENTO creates workspace instruments for professionals who value focus above all else. 
+              Every product we make is designed to disappear into your workflow — eliminating distractions 
+              so you can concentrate on what matters most.
+            </p>
+            <p className="font-body text-base text-text-secondary leading-relaxed max-w-prose">
+              We believe that the tools you use every day should be silent, precise, and built to last. 
+              From the dampening layers inside our keyboards to the flicker-free illumination of our desk lamps, 
+              every detail serves a single purpose: your uninterrupted focus.
+            </p>
+          </div>
+
+          {/* Pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="bg-surface border border-border rounded-xl p-5 md:p-6 space-y-4">
+              <h3 className="font-display text-xl font-semibold text-text-primary leading-snug">
+                Reductive Design
+              </h3>
+              <p className="font-body text-sm text-text-secondary leading-relaxed">
+                We eliminate everything that does not serve focus. Every curve, every material choice, 
+                and every sound profile is calculated to disappear into your workflow.
+              </p>
             </div>
-            <div className="space-y-8">
-               <h2 className="font-serif text-4xl text-text-primary italic">Industrial Permanence</h2>
-               <p className="font-body text-lg text-text-secondary leading-relaxed">
-                 Using aerospace-grade materials, we build instruments that are meant to last a lifetime. ZENTO is not a trend; it is an infrastructure.
-               </p>
-               <div className="h-px w-24 bg-primary/30" />
+            <div className="bg-surface border border-border rounded-xl p-5 md:p-6 space-y-4">
+              <h3 className="font-display text-xl font-semibold text-text-primary leading-snug">
+                Built to Last
+              </h3>
+              <p className="font-body text-sm text-text-secondary leading-relaxed">
+                Using aerospace-grade aluminum, premium PBT, and tempered glass, we build instruments 
+                meant to last a lifetime. ZENTO is an investment in your daily craft.
+              </p>
+            </div>
+            <div className="bg-surface border border-border rounded-xl p-5 md:p-6 space-y-4">
+              <h3 className="font-display text-xl font-semibold text-text-primary leading-snug">
+                Acoustic Precision
+              </h3>
+              <p className="font-body text-sm text-text-secondary leading-relaxed">
+                Every switch is tuned for a deep, satisfying response. Multi-layer dampening 
+                eliminates rattle and resonance, delivering a typing experience that feels as quiet as it sounds.
+              </p>
+            </div>
+            <div className="bg-surface border border-border rounded-xl p-5 md:p-6 space-y-4">
+              <h3 className="font-display text-xl font-semibold text-text-primary leading-snug">
+                Global Reach
+              </h3>
+              <p className="font-body text-sm text-text-secondary leading-relaxed">
+                We ship worldwide with priority logistics. Every order includes a 2-year warranty 
+                and access to our dedicated support team.
+              </p>
             </div>
           </div>
 
-          {/* Visual Break */}
-          <div className="relative aspect-[21/9] bg-surface/20 border border-border rounded-sm overflow-hidden group">
-             <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-1000" />
-             <div className="absolute inset-0 flex items-center justify-center">
-                <p className="font-mono text-[10px] uppercase tracking-[1em] text-text-tertiary opacity-40">
-                  CALIBRATED_ENVIRONMENT_01
-                </p>
-             </div>
+          {/* Quote */}
+          <div className="border-l-2 border-emerald/40 pl-8 space-y-4">
+            <p className="font-display italic text-2xl md:text-3xl text-text-primary leading-snug">
+              "We don't sell hardware. We sell the quiet space where mastery happens."
+            </p>
+            <p className="font-body text-sm text-text-secondary">
+              — The ZENTO Team
+            </p>
           </div>
 
-          {/* Quote Section */}
-          <div className="border-l border-primary/40 pl-12 space-y-8">
-             <p className="font-serif text-3xl md:text-4xl text-text-primary italic leading-tight">
-               "We don't sell hardware. We sell the quiet space where mastery happens."
-             </p>
-             <div className="space-y-1">
-               <p className="font-mono text-[10px] uppercase tracking-widest text-text-primary">ZENTO_Design_Lab</p>
-               <p className="font-mono text-[8px] uppercase tracking-widest text-text-tertiary">Oslo // 2026</p>
-             </div>
+          {/* CTA */}
+          <div className="text-center space-y-6 pt-8">
+            <h2 className="font-display text-3xl font-semibold text-text-primary tracking-tight">
+              Ready to upgrade your workspace?
+            </h2>
+            <Link 
+              href="/products" 
+              className="inline-flex items-center bg-emerald hover:bg-emerald-hover text-emerald-on-emerald font-body text-sm font-semibold px-8 h-12 rounded-lg transition-colors duration-150 active:scale-[0.98]"
+            >
+              Shop the Collection
+            </Link>
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ export const ProductGridCard = ({ product, index }: ProductGridCardProps) => {
             
             {/* Hover Action Circle */}
             <div className="absolute bottom-4 right-4 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald text-[#0A1A0E] shadow-[0_0_15px_rgba(46,234,127,0.4)]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald text-emerald-on-emerald shadow-[0_0_15px_rgba(46,234,127,0.4)]">
                 <ArrowUpRight size={18} strokeWidth={2.5} />
               </div>
             </div>
