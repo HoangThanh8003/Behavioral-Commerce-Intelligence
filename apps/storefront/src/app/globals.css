@@ -5,53 +5,61 @@
 @layer base {
   /* ── NexusAI × shadcn/ui — Emerald theme ── */
   :root {
-    --background:          15 23 18;       /* canvas  #0F1712 */
-    --foreground:          232 228 216;    /* text-primary #E8E4D8 */
-    --card:                23 35 24;       /* surface #172318 */
-    --card-foreground:     232 228 216;
-    --popover:             30 46 34;       /* overlay #1E2E22 */
-    --popover-foreground:  232 228 216;
-    --primary:             76 217 138;     /* emerald #4CD98A */
-    --primary-foreground:  10 26 14;       /* on-emerald #0A1A0E */
-    --secondary:           42 74 54;       /* border #2A4A36 */
-    --secondary-foreground: 154 189 154;
-    --muted:               30 46 34;
-    --muted-foreground:    106 154 120;    /* text-tertiary */
-    --accent:              26 46 34;       /* emerald-muted */
-    --accent-foreground:   76 217 138;
-    --destructive:         240 128 128;    /* danger #F08080 */
-    --destructive-foreground: 232 228 216;
-    --border:              42 74 54;
-    --input:               30 46 34;
-    --ring:                76 217 138;     /* focus ring = emerald */
+    --background:          157 29% 6%;     /* canvas  #0B1410 */
+    --foreground:          50 13% 93%;     /* text-primary #F0EFEA */
+    --card:                154 26% 11%;    /* surface #14221A */
+    --card-foreground:     50 13% 93%;
+    --popover:             145 26% 14%;    /* overlay #1A2C21 */
+    --popover-foreground:  50 13% 93%;
+    --primary:             161 84% 39%;    /* emerald #10b981 */
+    --primary-hover:       161 84% 45%;    /* lighter emerald for hover */
+    --primary-dim:         161 84% 20%;    /* darker emerald */
+    --primary-deep:        161 84% 10%;    /* deepest emerald */
+    --primary-border:      161 84% 30%;    /* border emerald */
+    --primary-foreground:  157 29% 4%;     /* on-emerald #050805 */
+    --secondary:           139 28% 16%;    /* border #1D3325 */
+    --secondary-foreground: 150 16% 61%;   /* text-secondary */
+    --muted:               143 17% 12%;    /* muted */
+    --muted-foreground:    143 17% 43%;    /* text-tertiary #5C806A */
+    --accent:              161 84% 10%;    /* emerald-muted */
+    --accent-foreground:   161 84% 39%;
+    --destructive:         0 85% 72%;      /* danger red */
+    --destructive-foreground: 50 13% 93%;
+    --border:              139 28% 16%;    /* #1D3325 */
+    --input:               139 28% 16%;
+    --ring:                161 84% 39%;
+    --text-secondary:      150 16% 61%;   /* #8AAB9A */
+    --text-tertiary:       143 17% 43%;   /* #5C806A */
+    --text-disabled:       143 17% 25%;   /* #334D3D */
     --radius: 0.5rem;
   }
 
-  /* Dashboard light mode (Storefront is dark-mode only) */
   .light {
-    --background:          245 247 245;
-    --foreground:          26 46 30;
-    --card:                255 255 255;
-    --card-foreground:     26 46 30;
-    --popover:             255 255 255;
-    --popover-foreground:  26 46 30;
-    --primary:             46 170 101;
-    --primary-foreground:  255 255 255;
-    --secondary:           200 218 202;
+    --background: 245 247 245;
+    --foreground: 26 46 30;
+    --card: 255 255 255;
+    --card-foreground: 26 46 30;
+    --popover: 255 255 255;
+    --popover-foreground: 26 46 30;
+    --primary: 46 170 101;
+    --primary-foreground: 255 255 255;
+    --secondary: 200 218 202;
     --secondary-foreground: 58 106 72;
-    --muted:               240 244 241;
-    --muted-foreground:    90 138 104;
-    --border:              200 218 202;
-    --input:               200 218 202;
+    --muted: 240 244 241;
+    --muted-foreground: 90 138 104;
+    --border: 200 218 202;
+    --input: 200 218 202;
   }
 
   /* Font override */
-  body { 
-    font-family: var(--font-body), sans-serif; 
+  body {
+    font-family: var(--font-body), sans-serif;
     @apply bg-canvas text-text-primary antialiased selection:bg-emerald/30;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
-  .font-sans { font-family: var(--font-body), sans-serif !important; }
+  .font-sans {
+    font-family: var(--font-body), sans-serif !important;
+  }
 
   /* Grain Overlay */
   body::before {
@@ -77,13 +85,13 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .glass-card {
     @apply bg-surface/80 backdrop-blur-md border border-border;
   }
-  
+
   .emerald-gradient-border {
-    background: linear-gradient(135deg, #2A5A3F 0%, #1A2E20 50%, #2A5A3F 100%);
+    background: linear-gradient(135deg, #2a5a3f 0%, #1a2e20 50%, #2a5a3f 100%);
   }
 
   .scrollbar-hide {

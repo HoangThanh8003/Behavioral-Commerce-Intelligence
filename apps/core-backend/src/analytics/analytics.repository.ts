@@ -37,4 +37,12 @@ export class AnalyticsRepository {
       take: 50,
     });
   }
+
+  async getGlobalEvents(limit = 10) {
+    return this.prisma.userEvent.findMany({
+      orderBy: { timestamp: 'desc' },
+      take: limit,
+      include: { user: { select: { id: true } } }
+    });
+  }
 }

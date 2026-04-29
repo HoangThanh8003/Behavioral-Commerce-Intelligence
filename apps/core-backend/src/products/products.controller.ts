@@ -18,14 +18,16 @@ export class ProductsController {
   @Get()
   @ApiOperation({ summary: 'Lấy danh sách sản phẩm' })
   @ApiQuery({ name: 'categoryId', required: false })
+  @ApiQuery({ name: 'categorySlug', required: false })
   @ApiQuery({ name: 'page', required: false })
   @ApiQuery({ name: 'limit', required: false })
   findAll(
     @Query('categoryId') categoryId?: string,
+    @Query('categorySlug') categorySlug?: string,
     @Query('page') page?: number,
     @Query('limit') limit?: number,
   ) {
-    return this.productsService.findAll({ categoryId, page, limit });
+    return this.productsService.findAll({ categoryId, categorySlug, page, limit });
   }
 
   @Get('search')

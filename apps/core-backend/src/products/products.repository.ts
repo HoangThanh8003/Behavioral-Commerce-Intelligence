@@ -11,11 +11,12 @@ export class ProductsRepository {
     return this.prisma.product.create({ data });
   }
 
-  async findAll(params: { categoryId?: string; skip?: number; take?: number }) {
-    const { categoryId, skip, take } = params;
+  async findAll(params: { categoryId?: string; categorySlug?: string; skip?: number; take?: number }) {
+    const { categoryId, categorySlug, skip, take } = params;
     return this.prisma.product.findMany({
       where: { 
-        categoryId,
+        ...(categoryId ? { categoryId } : {}),
+        ...(categorySlug ? { category: { slug: categorySlug } } : {}),
         deletedAt: null 
       },
       skip,

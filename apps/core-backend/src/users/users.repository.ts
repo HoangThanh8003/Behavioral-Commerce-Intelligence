@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class UsersRepository {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: any) {
+  async create(data: Prisma.UserCreateInput) {
     return this.prisma.user.create({ data });
   }
 
@@ -13,31 +14,33 @@ export class UsersRepository {
     return this.prisma.user.findUnique({ where: { email } });
   }
 
+  async findByUsername(username: string) {
+    return this.prisma.user.findUnique({ where: { username } });
+  }
+
   async findById(id: string) {
-    return this.prisma.user.findFirst({
-      where: { id, deletedAt: null },
+    return this.prisma.user.findUnique({ where: { id } });
+  }
+
+  async findByProvider(provider: 'GOOGLE' | 'FACEBOOK', providerId: string) {
+    return this.prisma.user.findUnique({
+      where: { providerId },
     });
   }
 
-  async findAll(skip?: number, take?: number) {
-    return this.prisma.user.findMany({
-      where: { deletedAt: null },
-      skip,
-      take,
-    });
-  }
-
-  async update(id: string, data: any) {
+  async update(id: string, data: Prisma.UserUpdateInput) {
     return this.prisma.user.update({
       where: { id },
       data,
     });
   }
 
-  async softDelete(id: string) {
-    return this.prisma.user.update({
-      where: { id },
-      data: { deletedAt: new Date() },
+  async findAll(params: { skip?: number; take?: number }) {
+    return this.prisma.user.findMany({
+      where: { deletedAt: null },
+      skip: params.skip ? Number(params.skip) : undefined,
+      take: params.take ? Number(params.take) : undefined,
+      orderBy: { createdAt: 'desc' },
     });
   }
 }

@@ -52,21 +52,29 @@ export const EngineeredDetail = () => {
             </Link>
           </motion.div>
 
-          {/* Right: Visual */}
+          {/* Right: Visual Architecture Diagram */}
           <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="relative aspect-square"
+            className="relative aspect-square lg:aspect-auto lg:h-[600px] group"
           >
-            <div className="absolute inset-0 bg-surface rounded-xl border border-border overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald/5 via-transparent to-transparent" />
-              <div className="h-full w-full flex items-center justify-center">
-                <div className="w-48 h-24 bg-emerald/10 rounded-2xl blur-3xl" />
-              </div>
-              {/* Inner top glow */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald/20 to-transparent" />
+            <div className="absolute inset-0 bg-surface rounded-2xl border border-border/50 overflow-hidden shadow-2xl shadow-emerald/5 transition-all duration-700 group-hover:border-emerald/30 group-hover:shadow-emerald/10">
+              {/* Cinematic Image Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-canvas/40 to-transparent z-10 pointer-events-none" />
+              
+              <img 
+                src="/keyboard_internal_diagram_1777459027090.png" 
+                alt="Keyboard Architecture Diagram"
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale hover:grayscale-0"
+              />
+
+              {/* Decorative Scanline Effect */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.02),rgba(0,255,0,0.01),rgba(0,0,255,0.02))] bg-[length:100%_2px,3px_100%] pointer-events-none opacity-20" />
+              
+              {/* Inner edge glow */}
+              <div className="absolute inset-0 border border-emerald/5 rounded-2xl z-20 pointer-events-none" />
             </div>
           </motion.div>
         </div>

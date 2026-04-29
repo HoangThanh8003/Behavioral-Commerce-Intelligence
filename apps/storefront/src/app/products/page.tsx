@@ -13,15 +13,15 @@ export default async function ProductsPage({
 }: {
   searchParams: { category?: string; search?: string; page?: string };
 }) {
-  const categoryId = searchParams.category;
+  const categorySlug = searchParams.category;
   const page = Number(searchParams.page || 1);
   
   const [products, categories] = await Promise.all([
-    getProducts({ categoryId, page, limit: 12 }),
+    getProducts({ categorySlug, page, limit: 12 }),
     getCategories()
   ]);
 
-  const activeCategory = categories.find(c => c.id === categoryId);
+  const activeCategory = categories.find(c => c.slug === categorySlug);
 
   return (
     <main className="bg-canvas min-h-screen pt-32 pb-24">
@@ -50,9 +50,9 @@ export default async function ProductsPage({
             <a 
               href="/products"
               className={`px-5 h-10 rounded-lg inline-flex items-center font-body text-sm font-normal transition-colors duration-150 ${
-                !categoryId 
-                  ? 'bg-emerald text-emerald-on-emerald font-semibold' 
-                  : 'bg-transparent border border-[#3A6A4A] text-[#C8E8D0] hover:border-emerald-border hover:bg-emerald-muted'
+                !categorySlug 
+                  ? 'bg-emerald text-canvas font-semibold' 
+                  : 'bg-transparent border border-border text-text-secondary hover:border-emerald hover:text-emerald'
               }`}
             >
               All
@@ -60,11 +60,11 @@ export default async function ProductsPage({
             {categories.map((cat) => (
               <a
                 key={cat.id}
-                href={`/products?category=${cat.id}`}
+                href={`/products?category=${cat.slug}`}
                 className={`px-5 h-10 rounded-lg inline-flex items-center font-body text-sm font-normal transition-colors duration-150 ${
-                  categoryId === cat.id 
-                    ? 'bg-emerald text-emerald-on-emerald font-semibold' 
-                    : 'bg-transparent border border-[#3A6A4A] text-[#C8E8D0] hover:border-emerald-border hover:bg-emerald-muted'
+                  categorySlug === cat.slug 
+                    ? 'bg-emerald text-canvas font-semibold' 
+                    : 'bg-transparent border border-border text-text-secondary hover:border-emerald hover:text-emerald'
                 }`}
               >
                 {cat.name}

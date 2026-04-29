@@ -1,11 +1,12 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
-import { getCategories } from '@/services/products';
+import { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { getCategories } from "@/services/products";
 
 export const metadata: Metadata = {
-  title: 'Collections | ZENTO',
-  description: 'Browse ZENTO collections: mechanical keyboards, audio, lighting, and workspace accessories.',
+  title: "Collections | ZENTO",
+  description:
+    "Browse ZENTO collections: mechanical keyboards, audio, lighting, and workspace accessories.",
 };
 
 export default async function CategoriesPage() {
@@ -36,7 +37,7 @@ export default async function CategoriesPage() {
             {categories.map((category, index) => (
               <Link
                 key={category.id}
-                href={`/products?category=${category.id}`}
+                href={`/products?category=${category.slug}`}
                 className="group relative overflow-hidden rounded-xl border border-border bg-surface transition-all duration-200 hover:-translate-y-0.5"
               >
                 <div className="relative aspect-[16/9]">

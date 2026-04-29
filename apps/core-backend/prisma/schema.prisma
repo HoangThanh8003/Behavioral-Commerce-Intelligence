@@ -53,10 +53,19 @@ enum InventoryAction {
 // Models
 // ============================================================
 
+enum AuthProvider {
+  LOCAL
+  GOOGLE
+  FACEBOOK
+}
+
 model User {
   id            String    @id @default(uuid())
   email         String    @unique
-  passwordHash  String
+  username      String?   @unique
+  passwordHash  String?
+  provider      AuthProvider @default(LOCAL)
+  providerId    String?   @unique
   name          String
   phone         String?
   role          UserRole  @default(CUSTOMER)

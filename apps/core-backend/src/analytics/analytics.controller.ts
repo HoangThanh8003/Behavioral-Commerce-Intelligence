@@ -29,4 +29,10 @@ export class AnalyticsController {
     const userId = req.user?.id || 'mock-user-id';
     return this.analyticsService.getMyActivity(userId);
   }
+
+  @Get('global-activity')
+  @ApiOperation({ summary: 'Xem hoạt động toàn cầu (Public)' })
+  getGlobalActivity() {
+    return this.analyticsService.getGlobalActivity(10);
+  }
 }

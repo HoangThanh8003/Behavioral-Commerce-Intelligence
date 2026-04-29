@@ -9,6 +9,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 
 export async function getProducts(options?: {
   categoryId?: string;
+  categorySlug?: string;
   limit?: number;
   page?: number;
   featured?: boolean;
@@ -16,6 +17,7 @@ export async function getProducts(options?: {
   try {
     const searchParams = new URLSearchParams();
     if (options?.categoryId) searchParams.set('categoryId', options.categoryId);
+    if (options?.categorySlug) searchParams.set('categorySlug', options.categorySlug);
     if (options?.limit) searchParams.set('limit', options.limit.toString());
     if (options?.page) searchParams.set('page', options.page.toString());
     

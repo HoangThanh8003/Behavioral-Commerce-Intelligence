@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { getProductBySlug, getRelatedProducts } from '@/services/products';
 import { formatCurrency } from '@/lib/utils';
 import { ProductCard } from '@/components/features/products/ProductCard';
-import { ShoppingCart, Truck, ShieldCheck, RotateCcw } from 'lucide-react';
+import { Truck, ShieldCheck, RotateCcw } from 'lucide-react';
+import { AddToCartButton } from '@/components/shared';
 
 interface ProductPageProps {
   params: { slug: string };
@@ -135,12 +136,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
             {/* Add to Cart */}
             <div className="flex items-center gap-3">
-              <button className="flex-1 bg-emerald hover:bg-emerald-hover text-emerald-on-emerald font-body text-sm font-semibold px-5 h-12 rounded-lg transition-colors duration-150 active:scale-[0.98]">
-                Add to Cart
-              </button>
-              <button className="w-12 h-12 rounded-lg bg-transparent border border-[#3A6A4A] hover:border-emerald-border hover:bg-emerald-muted flex items-center justify-center transition-colors duration-150 active:scale-[0.98]">
-                <ShoppingCart size={16} className="text-[#C8E8D0]" />
-              </button>
+              <AddToCartButton 
+                product={product} 
+                className="flex-1 h-12 text-sm"
+              />
             </div>
 
             {/* SKU */}

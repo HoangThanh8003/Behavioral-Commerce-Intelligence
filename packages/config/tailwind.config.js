@@ -15,6 +15,12 @@ module.exports = {
         'text-tertiary': 'hsl(var(--text-tertiary) / <alpha-value>)',
         'text-disabled': 'hsl(var(--text-disabled) / <alpha-value>)',
 
+        primary: {
+          DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
+          foreground: 'hsl(var(--primary-foreground) / <alpha-value>)',
+          hover: 'hsl(var(--primary-hover) / <alpha-value>)',
+        },
+
         emerald: {
           DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
           hover: 'hsl(var(--primary-hover) / <alpha-value>)',

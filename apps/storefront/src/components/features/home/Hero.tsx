@@ -33,7 +33,7 @@ export const Hero = () => {
             transition={{ duration: 0.8 }}
             className="flex items-center gap-4 mb-8"
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald shadow-[0_0_8px_#10b981]" />
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald shadow-[0_0_8px_theme(colors.emerald.DEFAULT/0.5)]" />
             <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-emerald">
               {t('home.hero.badge')}
             </span>
@@ -69,7 +69,7 @@ export const Hero = () => {
           >
             <Link 
               href="/products" 
-              className="px-8 py-3 bg-emerald text-canvas font-mono text-[11px] uppercase tracking-[0.2em] font-bold rounded-sm hover:bg-emerald-hover transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]"
+              className="px-8 py-3 bg-emerald text-primary-foreground font-mono text-[11px] uppercase tracking-[0.2em] font-bold rounded-sm hover:bg-emerald/90 transition-all shadow-lg shadow-emerald/20 hover:shadow-emerald/40"
             >
               Explore Collection
             </Link>

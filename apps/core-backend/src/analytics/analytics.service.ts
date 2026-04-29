@@ -22,4 +22,8 @@ export class AnalyticsService {
   async getMyActivity(userId: string) {
     return this.repository.getUserEvents(userId);
   }
+
+  async getGlobalActivity(limit?: number) {
+    return this.repository.getGlobalEvents(limit);
+  }
 }

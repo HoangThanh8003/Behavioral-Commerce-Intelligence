@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
-import { Category } from '@nexusai/types';
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { Category } from "@nexusai/types";
 
 interface CategorySectionProps {
   categories: Category[];
@@ -22,12 +22,12 @@ export const CategorySection = ({ categories }: CategorySectionProps) => {
         <div className="space-y-4 mb-16">
           <div className="flex items-center gap-3">
             <span className="w-1.5 h-1.5 rounded-full bg-text-primary" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary">
+            <span className="font-mono text-[11px] uppercase tracking-[0.4em] text-text-tertiary">
               03 — EXPLORE
             </span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl font-bold text-text-primary tracking-tight">
-            {t('home.categories.headline')}
+            {t("home.categories.headline")}
           </h2>
         </div>
 
@@ -39,14 +39,17 @@ export const CategorySection = ({ categories }: CategorySectionProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="relative aspect-[4/5] group rounded-sm border border-border bg-surface/30 backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-text-primary/40"
+              className="relative aspect-[4/5] group rounded-sm border border-border bg-surface/30 backdrop-blur-md overflow-hidden transition-all duration-500 hover:border-emerald/40 shadow-lg shadow-canvas/60 hover:shadow-2xl hover:shadow-emerald/10"
             >
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-text-primary/20 to-transparent transition-opacity duration-300 group-hover:via-text-primary/50" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald/20 to-transparent transition-opacity duration-300 group-hover:via-emerald/50" />
 
-              <Link href={`/products?category=${category.slug}`} className="absolute inset-0 z-20">
+              <Link
+                href={`/products?category=${category.slug}`}
+                className="absolute inset-0 z-20"
+              >
                 <span className="sr-only">View {category.name}</span>
               </Link>
-              
+
               {category.imageUrl && (
                 <div className="absolute inset-0 opacity-40 transition-transform duration-1000 group-hover:scale-105 group-hover:opacity-60">
                   <Image
@@ -58,9 +61,9 @@ export const CategorySection = ({ categories }: CategorySectionProps) => {
                   />
                 </div>
               )}
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/40 to-transparent opacity-90" />
-              
+
+              <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/60 to-transparent opacity-90" />
+
               <div className="absolute inset-0 p-6 flex flex-col justify-between relative z-10 pointer-events-none">
                 <div className="flex justify-end">
                   <div className="h-8 w-8 rounded-full border border-border flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
@@ -68,14 +71,15 @@ export const CategorySection = ({ categories }: CategorySectionProps) => {
                   </div>
                 </div>
                 <div>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-text-tertiary mb-2">
-                    {String(index + 1).padStart(2, '0')}
+                  <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-text-tertiary mb-2">
+                    {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="font-display text-2xl font-bold text-text-primary tracking-tight">
+                  <h3 className="font-display text-3xl font-bold text-text-primary tracking-tight">
                     {category.name}
                   </h3>
-                  <p className="font-body text-[10px] text-text-secondary mt-1 max-w-[180px]">
-                    {category.description || t(`home.categories.${category.slug}`)}
+                  <p className="font-body text-[12px] text-text-secondary mt-2 max-w-[200px] leading-relaxed">
+                    {category.description ||
+                      t(`home.categories.${category.slug}`)}
                   </p>
                 </div>
               </div>
