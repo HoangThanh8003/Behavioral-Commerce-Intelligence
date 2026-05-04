@@ -30,6 +30,16 @@ export class OrdersRepository {
         include: { items: true },
       });
 
+      // Update user shipping info
+      await tx.user.update({
+        where: { id: userId },
+        data: {
+          phone: dto.shippingPhone,
+          address: dto.shippingAddress,
+          shippingName: dto.shippingName,
+        },
+      });
+
       return order;
     });
   }

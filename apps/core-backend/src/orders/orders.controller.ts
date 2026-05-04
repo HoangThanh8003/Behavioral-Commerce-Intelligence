@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Param, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Request, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { OrdersService } from './orders.service';
 import { PlaceOrderDto } from './dto/order.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('Orders')
+@UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 @Controller('orders')
 export class OrdersController {
@@ -12,15 +14,13 @@ export class OrdersController {
   @Post()
   @ApiOperation({ summary: 'Đặt hàng từ giỏ hàng hiện tại' })
   placeOrder(@Request() req: any, @Body() dto: PlaceOrderDto) {
-    const userId = req.user?.id || 'mock-user-id';
-    return this.ordersService.placeOrder(userId, dto);
+    return this.ordersService.placeOrder(req.user.id, dto);
   }
 
   @Get('me')
   @ApiOperation({ summary: 'Lấy danh sách đơn hàng của tôi' })
   getMyOrders(@Request() req: any) {
-    const userId = req.user?.id || 'mock-user-id';
-    return this.ordersService.getMyOrders(userId);
+    return this.ordersService.getMyOrders(req.user.id);
   }
 
   @Get(':id')

@@ -68,6 +68,8 @@ model User {
   providerId    String?   @unique
   name          String
   phone         String?
+  address       String?
+  shippingName  String?
   role          UserRole  @default(CUSTOMER)
   avatarUrl     String?
   isActive      Boolean   @default(true)

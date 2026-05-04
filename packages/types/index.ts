@@ -133,7 +133,27 @@ export interface PurchaseEvent extends BaseEvent {
 
 export type NexusEvent = ClickEvent | PurchaseEvent;
 
+// Persona Types
+export type PersonaType = 'IMPULSE_BUYER' | 'RESEARCHER' | 'LOYAL_CUSTOMER' | 'EXPLORER';
+
+export interface UserPersonaTraits {
+  type: PersonaType;
+  confidence: number;
+  rule_version: string;
+  mode: string;
+  scores: Record<string, number>;
+}
+
 export interface UserPersona extends BaseEntity {
-  traits: Record<string, unknown>;
+  traits: UserPersonaTraits | Record<string, unknown>;
   userId: string;
+}
+
+// Analytics Integration
+export interface TrackingEvent {
+  eventId?: string;
+  userId: string;
+  type: string;
+  payload: Record<string, any>;
+  timestamp?: string;
 }

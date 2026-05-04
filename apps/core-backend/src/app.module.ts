@@ -7,9 +7,12 @@ import { InventoryModule } from "./inventory/inventory.module";
 import { CartsModule } from "./carts/carts.module";
 import { OrdersModule } from "./orders/orders.module";
 import { AnalyticsModule } from "./analytics/analytics.module";
+import { RabbitMQModule } from "./rabbitmq/rabbitmq.module";
+import { PaymentModule } from "./payment/payment.module";
 
 @Module({
   imports: [
+    RabbitMQModule,
     AuthModule,
     UsersModule,
     CategoriesModule,
@@ -18,8 +21,11 @@ import { AnalyticsModule } from "./analytics/analytics.module";
     CartsModule,
     OrdersModule,
     AnalyticsModule,
+    PaymentModule,
   ],
   controllers: [],
   providers: [],
 })
 export class AppModule {}
+
+

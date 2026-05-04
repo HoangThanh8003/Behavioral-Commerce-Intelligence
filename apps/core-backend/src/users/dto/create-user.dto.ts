@@ -33,6 +33,16 @@ export class CreateUserDto {
   @IsOptional()
   avatarUrl?: string;
 
+  @ApiProperty({ example: '123 Main St, Hanoi', required: false })
+  @IsString()
+  @IsOptional()
+  address?: string;
+
+  @ApiProperty({ example: 'John Doe Jr.', required: false })
+  @IsString()
+  @IsOptional()
+  shippingName?: string;
+
   @ApiProperty({ default: true, required: false })
   @IsBoolean()
   @IsOptional()

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/useAuthStore';
 import { getOrderHistory } from '@/services/auth';
 import { formatCurrency } from '@/lib/utils';
+import { toast } from 'sonner';
 import { 
   User, 
   Package, 
@@ -12,44 +13,116 @@ import {
   ChevronRight, 
   Clock, 
   Shield, 
-  Settings,
   CreditCard,
-  MapPin
+  MapPin,
+  Save,
+  Edit2,
+  Phone,
+  Settings,
+  User as UserIcon
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { AddressAutocomplete } from '@/components/shared/AddressAutocomplete';
 
 export default function AccountPage() {
-  const { user, token, logout, isAuthenticated } = useAuthStore();
+  const { user, token, logout, isAuthenticated, updateUser } = useAuthStore();
   const [orders, setOrders] = React.useState<any[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [hasMounted, setHasMounted] = React.useState(false);
+  const [isUpdating, setIsUpdating] = React.useState(false);
+  const [editMode, setEditMode] = React.useState(false);
+  const [shippingForm, setShippingForm] = React.useState({
+    name: user?.name || '',
+    shippingName: user?.shippingName || '',
+    phone: user?.phone || '',
+    address: user?.address || ''
+  });
   const router = useRouter();
 
   React.useEffect(() => {
-    if (!isAuthenticated) {
+    if (user) {
+      setShippingForm({
+        name: user.name,
+        shippingName: user.shippingName || '',
+        phone: user.phone || '',
+        address: user.address || ''
+      });
+    }
+  }, [user]);
+
+  React.useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (hasMounted && !isAuthenticated) {
       router.push('/auth/login');
       return;
     }
 
-    const fetchOrders = async () => {
-      try {
-        const data = await getOrderHistory(token!);
-        setOrders(data);
-      } catch (error) {
-        console.error('Failed to fetch orders:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    if (hasMounted && isAuthenticated) {
+      const fetchOrders = async () => {
+        try {
+          const data = await getOrderHistory(token!);
+          setOrders(data);
+        } catch (error) {
+          console.error('Failed to fetch orders:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
 
-    fetchOrders();
-  }, [isAuthenticated, token, router]);
+      fetchOrders();
+    }
+  }, [hasMounted, isAuthenticated, token, router]);
 
   const handleLogout = () => {
     logout();
     router.push('/');
   };
 
-  if (!isAuthenticated || !user) return null;
+  const handleUpdateProfile = async () => {
+    if (!token) return;
+    setIsUpdating(true);
+    try {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+      const response = await fetch(`${API_URL}/users/me`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          name: shippingForm.name,
+          shippingName: shippingForm.shippingName,
+          phone: shippingForm.phone,
+          address: shippingForm.address
+        })
+      });
+
+      if (response.ok) {
+        const updatedUser = await response.json();
+        updateUser(updatedUser);
+        setEditMode(false);
+        toast.success('Profile Synchronization Complete', {
+          description: 'Your delivery data has been secured in our ecosystem.'
+        });
+      } else {
+        toast.error('Sync Failure', {
+          description: 'Unable to update profile. Please verify your connection.'
+        });
+      }
+    } catch (error) {
+      console.error('Update error:', error);
+      toast.error('System Overload', {
+        description: 'An unexpected error occurred. Please try again later.'
+      });
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  if (!hasMounted || !isAuthenticated || !user) return null;
 
   return (
     <main className="min-h-screen bg-canvas pt-32 pb-24">
@@ -111,6 +184,95 @@ export default function AccountPage() {
                   <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary">Real-time Sync</span>
                </div>
             </div>
+
+            {/* Shipping Info Section */}
+            <div className="p-8 rounded-3xl border border-border/50 bg-surface/20 backdrop-blur-sm">
+               <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-3">
+                     <div className="p-2 rounded-lg bg-emerald/10 text-emerald">
+                        <MapPin size={18} />
+                     </div>
+                     <h3 className="font-display text-xl font-bold text-text-primary">Shipping Information</h3>
+                  </div>
+                  <button 
+                    onClick={() => setEditMode(!editMode)}
+                    className="text-text-tertiary hover:text-emerald transition-colors"
+                  >
+                     {editMode ? <span className="font-mono text-[10px] uppercase font-bold">Cancel</span> : <Edit2 size={16} />}
+                  </button>
+               </div>
+
+               {editMode ? (
+                 <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       <div className="space-y-1.5">
+                          <label className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary ml-1">Full Name</label>
+                          <div className="relative">
+                             <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-text-tertiary" />
+                             <input 
+                               type="text"
+                               value={shippingForm.name}
+                               onChange={(e) => setShippingForm({...shippingForm, name: e.target.value})}
+                               className="w-full bg-canvas/50 border border-border/50 rounded-xl pl-11 pr-4 py-3 font-body text-sm text-text-primary focus:outline-none focus:border-emerald/50"
+                             />
+                          </div>
+                       </div>
+                       <div className="space-y-1.5">
+                          <label className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary ml-1">Phone Number</label>
+                          <div className="relative">
+                             <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-text-tertiary" />
+                             <input 
+                               type="tel"
+                               value={shippingForm.phone}
+                               onChange={(e) => setShippingForm({...shippingForm, phone: e.target.value})}
+                               className="w-full bg-canvas/50 border border-border/50 rounded-xl pl-11 pr-4 py-3 font-body text-sm text-text-primary focus:outline-none focus:border-emerald/50"
+                             />
+                          </div>
+                       </div>
+                    </div>
+                    <div className="space-y-1.5">
+                       <label className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary ml-1">Delivery Address</label>
+                       <AddressAutocomplete 
+                         value={shippingForm.address}
+                         onChange={(val) => setShippingForm({...shippingForm, address: val})}
+                       />
+                    </div>
+                    <button 
+                      onClick={handleUpdateProfile}
+                      disabled={isUpdating}
+                      className="w-full mt-4 bg-emerald text-canvas font-mono text-[10px] font-bold uppercase tracking-[0.2em] py-4 rounded-xl hover:bg-emerald/90 transition-all flex items-center justify-center gap-2"
+                    >
+                       {isUpdating ? (
+                         <span className="w-3 h-3 border-2 border-canvas border-t-transparent animate-spin rounded-full" />
+                       ) : (
+                         <>
+                           <Save size={14} />
+                           Save Delivery Data
+                         </>
+                       )}
+                    </button>
+                 </div>
+               ) : (
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                       <div>
+                          <p className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary mb-1">Default Receiver</p>
+                          <p className="font-body text-sm text-text-primary font-medium">{user.shippingName || user.name}</p>
+                       </div>
+                       <div>
+                          <p className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary mb-1">Phone Line</p>
+                          <p className="font-body text-sm text-text-primary">{user.phone || 'No phone added'}</p>
+                       </div>
+                    </div>
+                    <div>
+                       <p className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary mb-1">Primary Address</p>
+                       <p className="font-body text-sm text-text-primary leading-relaxed">{user.address || 'No address saved in ecosystem'}</p>
+                    </div>
+                 </div>
+               )}
+            </div>
+
+            <div className="h-px bg-border/20" />
 
             {isLoading ? (
                <div className="space-y-4">

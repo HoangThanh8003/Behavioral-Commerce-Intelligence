@@ -5,21 +5,138 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Trash2, Plus, Minus, ArrowRight, CreditCard, Landmark, QrCode } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
+import { useAuthStore } from '@/store/useAuthStore';
 import { formatCurrency } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AddressAutocomplete } from '@/components/shared/AddressAutocomplete';
 
 export default function CartPage() {
-  const { items, removeItem, updateQuantity, totalPrice, totalItems } = useCartStore();
+  const { items, removeItem, updateQuantity, totalPrice, totalItems, clearCart } = useCartStore();
+  const { user, token } = useAuthStore();
   const [hasMounted, setHasMounted] = React.useState(false);
   const [paymentMethod, setPaymentMethod] = React.useState<'momo' | 'bank' | null>(null);
+  const [isProcessing, setIsProcessing] = React.useState(false);
+  const [shippingInfo, setShippingInfo] = React.useState({ name: '', phone: '', address: '', note: '' });
+  const [paymentStatus, setPaymentStatus] = React.useState<'IDLE' | 'WAITING_FOR_TAB' | 'SUCCESS'>('IDLE');
+  const [currentOrderId, setCurrentOrderId] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     setHasMounted(true);
-  }, []);
+    if (user && !shippingInfo.name && !shippingInfo.phone && !shippingInfo.address) {
+      setShippingInfo({
+        name: user.shippingName || user.name || user.username || '',
+        phone: user.phone || '',
+        address: user.address || '',
+        note: ''
+      });
+    }
+  }, [user, shippingInfo.name, shippingInfo.phone, shippingInfo.address]);
+
+  // Listen for cart being cleared by the success page in the new tab
+  React.useEffect(() => {
+    if (paymentStatus === 'WAITING_FOR_TAB' && items.length === 0) {
+      setPaymentStatus('SUCCESS');
+    }
+  }, [items.length, paymentStatus]);
+
+  const handleCheckout = async () => {
+    if (paymentMethod === 'momo') {
+      setIsProcessing(true);
+      try {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+        
+        // Step 1: Create Order in DB (this also updates user profile)
+        let orderId = `ZENTO_${new Date().getTime()}`;
+        if (user && token) {
+          try {
+            const orderRes = await fetch(`${API_URL}/orders`, {
+              method: 'POST',
+              headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                shippingName: shippingInfo.name,
+                shippingPhone: shippingInfo.phone,
+                shippingAddress: shippingInfo.address,
+                note: shippingInfo.note
+              }),
+            });
+            const orderData = await orderRes.json();
+            if (orderData.id) {
+              orderId = orderData.id;
+            }
+          } catch (e) {
+            console.error('Failed to create order record, proceeding with temporary ID', e);
+          }
+        }
+
+        // Step 2: Create MoMo Payment URL
+        const amountVND = Math.max(Math.floor(totalPrice() * 25000), 10000);
+        
+        const response = await fetch(`${API_URL}/payment/momo/create`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            amount: amountVND,
+            orderId: orderId
+          }),
+        });
+        
+        const data = await response.json();
+        
+        // Step 2: Open MoMo in New Tab
+        if (data.payUrl && data.orderId) {
+          setCurrentOrderId(data.orderId);
+          window.open(data.payUrl, '_blank');
+          
+          // Step 3: Wait for user to complete in new tab
+          setPaymentStatus('WAITING_FOR_TAB');
+          setIsProcessing(false);
+          
+        } else {
+          alert('Failed to initialize MoMo payment. Please try again.');
+          setIsProcessing(false);
+        }
+      } catch (error) {
+        console.error('Checkout error:', error);
+        alert('Payment service unavailable. Please try again later.');
+        setIsProcessing(false);
+      }
+    } else {
+      // Bank Transfer - UI only for now
+      alert('Bank transfer instructions will be emailed to you.');
+      // clearCart();
+      // router.push('/cart/success');
+    }
+  };
 
   if (!hasMounted) return null;
 
-  if (items.length === 0) {
+  if (paymentStatus === 'SUCCESS') {
+    return (
+      <main className="min-h-screen bg-canvas pt-32 pb-20 flex flex-col items-center justify-center text-center px-6">
+        <div className="mb-8 p-10 rounded-full bg-surface border border-emerald/50 relative group">
+           <div className="absolute inset-0 rounded-full bg-emerald/20 blur-2xl transition-all" />
+           <svg className="w-16 h-16 text-emerald relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+           </svg>
+        </div>
+        <h1 className="font-display text-4xl font-bold text-text-primary mb-4 tracking-tight">Payment Successful!</h1>
+        <p className="font-body text-text-secondary mb-10 max-w-sm">
+          Your order #{currentOrderId} has been confirmed. We will ship to {shippingInfo.address || 'your address'} shortly.
+        </p>
+        <Link 
+          href="/products"
+          className="bg-emerald text-canvas font-mono text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-emerald/90 transition-all shadow-xl shadow-emerald/20 active:scale-95"
+        >
+          Continue Shopping
+        </Link>
+      </main>
+    );
+  }
+
+  if (items.length === 0 && paymentStatus !== 'WAITING_FOR_TAB') {
     return (
       <main className="min-h-screen bg-canvas pt-32 pb-20 flex flex-col items-center justify-center text-center px-6">
         <div className="mb-8 p-10 rounded-full bg-surface border border-border/50 relative group">
@@ -52,10 +169,48 @@ export default function CartPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Cart Items */}
-          <div className="lg:col-span-2 space-y-4">
-            <AnimatePresence mode="popLayout">
-              {items.map((item) => (
+          {/* Left Column: Delivery & Cart Items */}
+          <div className="lg:col-span-2 space-y-12">
+            
+            {/* Delivery Information Form */}
+            <div className="space-y-6">
+               <h2 className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary font-bold mb-4">Delivery Information</h2>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <input 
+                   type="text" 
+                   placeholder="Full Name" 
+                   value={shippingInfo.name}
+                   onChange={(e) => setShippingInfo({...shippingInfo, name: e.target.value})}
+                   className="w-full bg-surface/50 border border-border/50 rounded-xl px-4 py-3 font-body text-sm text-text-primary focus:outline-none focus:border-emerald/50 transition-colors"
+                 />
+                 <input 
+                   type="tel" 
+                   placeholder="Phone Number" 
+                   value={shippingInfo.phone}
+                   onChange={(e) => setShippingInfo({...shippingInfo, phone: e.target.value})}
+                   className="w-full bg-surface/50 border border-border/50 rounded-xl px-4 py-3 font-body text-sm text-text-primary focus:outline-none focus:border-emerald/50 transition-colors"
+                 />
+                 <AddressAutocomplete
+                   value={shippingInfo.address}
+                   onChange={(val) => setShippingInfo({...shippingInfo, address: val})}
+                   placeholder="Delivery Address (e.g. 123 Main St...)"
+                   className="w-full md:col-span-2"
+                 />
+                 <textarea 
+                   placeholder="Note (Optional)" 
+                   value={shippingInfo.note}
+                   onChange={(e) => setShippingInfo({...shippingInfo, note: e.target.value})}
+                   rows={2}
+                   className="w-full md:col-span-2 bg-surface/50 border border-border/50 rounded-xl px-4 py-3 font-body text-sm text-text-primary focus:outline-none focus:border-emerald/50 transition-colors resize-none"
+                 />
+               </div>
+            </div>
+
+            {/* Cart Items */}
+            <div>
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary font-bold mb-4">Order Items</h2>
+              <AnimatePresence mode="popLayout">
+                {items.map((item) => (
                 <motion.div
                   key={item.id}
                   layout
@@ -104,6 +259,7 @@ export default function CartPage() {
                 </motion.div>
               ))}
             </AnimatePresence>
+            </div>
           </div>
 
           {/* Order Summary & Payment */}
@@ -155,10 +311,25 @@ export default function CartPage() {
                 >
                   {paymentMethod === 'momo' ? (
                     <div className="space-y-2 text-center">
-                       <p className="font-body text-[11px] text-text-secondary">Scan the QR code in your MoMo app to complete the transaction.</p>
-                       <div className="aspect-square w-32 mx-auto bg-white p-2 rounded-lg opacity-80 flex items-center justify-center text-black font-bold">
-                          [QR_CODE]
-                       </div>
+                       {paymentStatus === 'WAITING_FOR_TAB' ? (
+                         <>
+                           <p className="font-body text-[11px] text-text-secondary text-emerald">Payment opened in a new tab.</p>
+                           <p className="font-body text-[10px] text-text-tertiary">Please complete the transaction there. This page will update automatically when successful.</p>
+                           <button 
+                             onClick={() => setPaymentStatus('SUCCESS')}
+                             className="mt-4 text-[9px] font-mono text-text-tertiary underline hover:text-emerald"
+                           >
+                             [DEV] Simulate Success
+                           </button>
+                         </>
+                       ) : (
+                         <>
+                           <p className="font-body text-[11px] text-text-secondary">You will be redirected to the secure MoMo gateway in a new tab.</p>
+                           <div className="mx-auto w-12 h-12 flex items-center justify-center">
+                              <QrCode className="text-emerald animate-pulse" size={24} />
+                           </div>
+                         </>
+                       )}
                     </div>
                   ) : (
                     <div className="space-y-3">
@@ -180,10 +351,20 @@ export default function CartPage() {
               )}
 
               <button 
-                className="w-full mt-10 bg-emerald text-canvas font-mono text-[10px] font-bold uppercase tracking-[0.2em] py-4 rounded-lg hover:bg-emerald/90 transition-all shadow-xl shadow-emerald/20 active:scale-[0.98] disabled:opacity-50"
-                disabled={!paymentMethod}
+                onClick={handleCheckout}
+                className="w-full mt-10 bg-emerald text-canvas font-mono text-[10px] font-bold uppercase tracking-[0.2em] py-4 rounded-lg hover:bg-emerald/90 transition-all shadow-xl shadow-emerald/20 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2"
+                disabled={!paymentMethod || isProcessing || !shippingInfo.name || !shippingInfo.phone || !shippingInfo.address || paymentStatus === 'WAITING_FOR_TAB'}
               >
-                Complete Transaction
+                {isProcessing ? (
+                  <>
+                    <span className="w-3 h-3 rounded-full border-2 border-canvas border-t-transparent animate-spin" />
+                    Processing...
+                  </>
+                ) : paymentStatus === 'WAITING_FOR_TAB' ? (
+                  'Waiting for Payment...'
+                ) : (
+                  'Complete Transaction'
+                )}
               </button>
             </div>
             

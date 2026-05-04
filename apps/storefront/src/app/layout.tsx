@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
+import { Toaster } from "@/components/ui/sonner";
 import Providers from "./providers";
 import "./globals.css";
 
@@ -51,6 +52,7 @@ export default function RootLayout({
             </div>
             <Footer />
           </div>
+          <Toaster position="top-right" closeButton richColors />
         </Providers>
       </body>
     </html>

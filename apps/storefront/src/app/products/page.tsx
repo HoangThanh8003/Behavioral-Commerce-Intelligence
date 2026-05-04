@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { getProducts, getCategories } from '@/services/products';
 import { ProductCard } from '@/components/features/products/ProductCard';
+import { ProductListClient } from '@/components/features/products/ProductListClient';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
@@ -15,9 +16,10 @@ export default async function ProductsPage({
 }) {
   const categorySlug = searchParams.category;
   const page = Number(searchParams.page || 1);
+  const limit = 12;
   
   const [products, categories] = await Promise.all([
-    getProducts({ categorySlug, page, limit: 12 }),
+    getProducts({ categorySlug, page, limit }),
     getCategories()
   ]);
 
@@ -80,7 +82,7 @@ export default async function ProductsPage({
           </span>
         </div>
 
-        {/* Product Grid */}
+        {/* Product Grid & Load More */}
         <Suspense fallback={
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[...Array(6)].map((_, i) => (
@@ -89,11 +91,12 @@ export default async function ProductsPage({
           </div>
         }>
           {products.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <ProductListClient 
+              initialProducts={products} 
+              categorySlug={categorySlug}
+              initialPage={page}
+              limit={limit}
+            />
           ) : (
             <div className="py-32 text-center border border-dashed border-border rounded-xl">
               <p className="font-display text-2xl text-text-primary italic mb-2">No products found.</p>
@@ -109,15 +112,6 @@ export default async function ProductsPage({
             </div>
           )}
         </Suspense>
-
-        {/* Load More */}
-        {products.length >= 12 && (
-          <div className="mt-16 flex justify-center">
-            <button className="px-5 h-10 rounded-lg bg-transparent border border-[#3A6A4A] text-[#C8E8D0] hover:border-emerald-border hover:bg-emerald-muted font-body text-sm font-normal transition-colors duration-150 active:scale-[0.98]">
-              Load More
-            </button>
-          </div>
-        )}
       </div>
     </main>
   );
